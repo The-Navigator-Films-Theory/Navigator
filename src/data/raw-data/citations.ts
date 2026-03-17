@@ -1,4 +1,4 @@
-import { Citation } from '../types';
+import type { Citation } from '../../types';
 
 export const citations: Citation[] = [
   // FEMINIST THEORY - Enhanced with more comprehensive citations

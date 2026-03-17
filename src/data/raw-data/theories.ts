@@ -1,5 +1,5 @@
-import { Theory } from '../types';
-import { films } from '../data/films';
+import { films } from './films';
+import { Theory } from '../../../types';import { films } from './films';
 
 // Re-export films for other modules that might need it
 export { films } from './films';

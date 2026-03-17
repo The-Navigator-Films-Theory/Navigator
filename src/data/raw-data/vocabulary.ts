@@ -1,4 +1,4 @@
-import { VocabularyTerm } from '../types';
+import type { VocabularyTerm } from '../../types';
 
 export const vocabularyTerms: VocabularyTerm[] = [
   // FOUNDATIONAL TERMS

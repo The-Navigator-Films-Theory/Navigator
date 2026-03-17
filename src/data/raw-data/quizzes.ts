@@ -1,4 +1,4 @@
-import { QuizQuestion, Flashcard, Game } from '../types';
+import type { Flashcard, Game, QuizQuestion } from '../../types';
 
 export const quizQuestions: QuizQuestion[] = [
   {
