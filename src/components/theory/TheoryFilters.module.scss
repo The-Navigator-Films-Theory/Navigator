@@ -1,36 +1,56 @@
 .container {
-  margin-top: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  border: 1px solid rgba(var(--border), 0.1);
-  border-radius: 0.75rem;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 1rem;
-}
-
-.input,
-.select {
-  border: 1px solid rgba(var(--border), 0.2);
-  border-radius: 0.375rem;
-  background: rgba(0, 0, 0, 0.2);
-  padding: 0.5rem 0.75rem;
-  font-size: 0.875rem;
-  color: rgb(var(--text));
-  outline: none;
+  margin-top: 1.6rem;
+  display: grid;
+  gap: 0.8rem;
 }
 
 .input {
+  border: 1px solid rgba(var(--border), 1);
+  border-radius: 0.7rem;
+  background: rgb(var(--surface));
+  padding: 0.72rem 0.85rem;
+  font-size: 0.9rem;
+  color: rgb(var(--text));
+  outline: none;
   width: 100%;
 }
 
-.input:focus,
-.select:focus {
-  box-shadow: 0 0 0 1px rgb(var(--accent));
+.input:focus {
+  border-color: rgba(var(--primary), 0.5);
+  box-shadow: 0 0 0 3px rgba(var(--primary), 0.15);
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.pill {
+  border: 1px solid rgba(var(--border), 1);
+  border-radius: 999px;
+  background: rgb(var(--surface));
+  color: rgba(var(--text), 0.72);
+  padding: 0.45rem 0.82rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.pill:hover {
+  border-color: rgba(var(--primary), 0.55);
+  color: rgb(var(--primary));
+}
+
+.pillActive {
+  background: rgb(var(--primary));
+  border-color: rgb(var(--primary));
+  color: #fff;
 }
 
 @media (min-width: 640px) {
   .container {
-    flex-direction: row;
+    gap: 1rem;
   }
 }

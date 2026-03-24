@@ -1,11 +1,17 @@
 import styles from './TheoryFilters.module.scss';
 
+type CategoryPill = {
+  value: string;
+  label: string;
+  count: number;
+};
+
 type TheoryFiltersProps = {
   query: string;
   onQueryChange: (value: string) => void;
   category: string;
   onCategoryChange: (value: string) => void;
-  categories: string[];
+  categories: CategoryPill[];
 };
 
 export default function TheoryFilters({
@@ -19,22 +25,22 @@ export default function TheoryFilters({
     <div className={styles.container}>
       <input
         className={styles.input}
-        placeholder="Search by title..."
+        placeholder="Search theories, thinkers, history..."
         value={query}
         onChange={(event) => onQueryChange(event.target.value)}
       />
-      <select
-        className={styles.select}
-        value={category}
-        onChange={(event) => onCategoryChange(event.target.value)}
-      >
-        <option value="">All categories</option>
+      <div className={styles.pills}>
         {categories.map((entry) => (
-          <option key={entry} value={entry}>
-            {entry}
-          </option>
+          <button
+            key={entry.value || 'all'}
+            type="button"
+            className={[styles.pill, category === entry.value ? styles.pillActive : ''].filter(Boolean).join(' ')}
+            onClick={() => onCategoryChange(entry.value)}
+          >
+            {entry.label} ({entry.count})
+          </button>
         ))}
-      </select>
+      </div>
     </div>
   );
 }
