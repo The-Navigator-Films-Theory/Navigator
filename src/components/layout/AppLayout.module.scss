@@ -1,8 +1,9 @@
 .root {
   min-height: 100vh;
   background:
-    radial-gradient(1000px circle at -20% -20%, rgba(var(--primary), 0.12) 0%, transparent 55%),
-    linear-gradient(170deg, rgb(var(--bg-1)) 0%, rgb(var(--bg-2)) 100%);
+    radial-gradient(900px circle at -10% -30%, rgba(var(--primary), 0.08) 0%, transparent 58%),
+    radial-gradient(740px circle at 115% -5%, rgba(var(--accent), 0.05) 0%, transparent 56%),
+    linear-gradient(180deg, rgb(var(--bg-1)) 0%, rgb(var(--bg-2)) 100%);
   color: rgb(var(--text));
 }
 
@@ -10,7 +11,7 @@
   margin: 0 auto;
   width: 100%;
   max-width: 72rem;
-  padding: 2rem 1rem;
+  padding: 1.75rem 1rem 2.5rem;
 }
 
 @media (min-width: 640px) {

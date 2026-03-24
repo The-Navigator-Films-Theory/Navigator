@@ -1,0 +1,225 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(15, 23, 42, 0.35);
+  backdrop-filter: blur(3px);
+}
+
+.modal {
+  width: min(980px, 100%);
+  max-height: 90vh;
+  overflow: auto;
+  border: 1px solid rgba(var(--border), 1);
+  border-radius: 1rem;
+  background: rgb(var(--surface));
+  box-shadow: 0 24px 64px rgba(17, 24, 39, 0.24);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(var(--border), 1);
+  padding: 0.95rem 1.1rem;
+}
+
+.modalTitle {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.closeButton {
+  border: none;
+  background: transparent;
+  color: rgba(var(--text), 0.6);
+  cursor: pointer;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.content {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.25rem;
+}
+
+.primaryCol {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+}
+
+.sideCol {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.paragraph {
+  margin: 0;
+  color: rgba(var(--text), 0.78);
+  line-height: 1.65;
+}
+
+.pointList {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: rgba(var(--text), 0.82);
+  display: grid;
+  gap: 0.4rem;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pill {
+  border-radius: 999px;
+  background: rgb(var(--panel-2));
+  border: 1px solid rgba(var(--border), 0.9);
+  color: rgba(var(--text), 0.75);
+  padding: 0.3rem 0.6rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.filmList {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.filmCard {
+  display: grid;
+  grid-template-columns: 58px 1fr;
+  gap: 0.55rem;
+  align-items: center;
+  border: 1px solid rgba(var(--border), 1);
+  border-radius: 0.65rem;
+  padding: 0.3rem;
+  background: rgb(var(--panel-2));
+}
+
+.filmImage {
+  width: 58px;
+  height: 44px;
+  border-radius: 0.45rem;
+  object-fit: cover;
+}
+
+.filmTitle {
+  margin: 0;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.filmSubtitle {
+  margin: 0.12rem 0 0;
+  font-size: 0.74rem;
+  color: rgba(var(--text), 0.62);
+}
+
+.citationList {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.citationCard {
+  margin: 0;
+  border-left: 3px solid rgba(var(--primary), 0.8);
+  border-radius: 0.35rem;
+  background: rgb(var(--panel-2));
+  color: rgba(var(--text), 0.78);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  padding: 0.55rem 0.65rem;
+}
+
+.citationTitle {
+  margin: 0;
+  font-weight: 700;
+  color: rgb(var(--text));
+}
+
+.citationMeta {
+  margin: 0.2rem 0 0;
+  font-size: 0.76rem;
+  color: rgba(var(--text), 0.62);
+}
+
+.citationExcerpt {
+  margin: 0.3rem 0 0;
+  color: rgba(var(--text), 0.74);
+}
+
+.footer {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border-top: 1px solid rgba(var(--border), 1);
+  background: rgb(var(--surface));
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.buttonPrimary,
+.buttonSecondary,
+.buttonText {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.buttonPrimary {
+  background: rgb(var(--primary));
+  color: white;
+  border: none;
+}
+
+.buttonPrimary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.buttonSecondary {
+  background: transparent;
+  color: rgb(var(--primary));
+  border: 1.5px solid rgb(var(--primary));
+}
+
+.buttonSecondary:hover {
+  background: rgba(var(--primary), 0.08);
+  transform: translateY(-1px);
+}
+
+.buttonText {
+  background: transparent;
+  color: rgb(var(--primary));
+  border: none;
+  padding: 0.6rem 0.8rem;
+}
+
+.buttonText:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 920px) {
+  .content {
+    grid-template-columns: 1.5fr 1fr;
+  }
+}

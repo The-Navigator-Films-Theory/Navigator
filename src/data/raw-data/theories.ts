@@ -1,10 +1,9 @@
 import { films } from './films';
-import { Theory } from '../../../types';import { films } from './films';
 
 // Re-export films for other modules that might need it
 export { films } from './films';
 
-export const theories: Theory[] = [
+export const theories = [
   {
     id: 'auteur',
     name: 'Auteur Theory',

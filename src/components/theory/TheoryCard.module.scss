@@ -1,36 +1,104 @@
 .card {
-  border: 1px solid rgba(var(--border), 0.1);
-  border-radius: 0.75rem;
+  display: grid;
+  gap: 0.75rem;
+  border: 1px solid rgba(var(--border), 1);
+  border-radius: 1rem;
   background: rgb(var(--surface));
-  padding: 1rem;
-  transition: border-color 150ms ease;
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.08);
+  padding: 1.2rem 1.2rem 0.85rem;
+  min-height: 19.5rem;
+  transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
 }
 
 .card:hover {
-  border-color: rgba(var(--border), 0.3);
+  border-color: rgba(var(--primary), 0.35);
+  box-shadow: 0 12px 30px rgba(17, 24, 39, 0.12);
+  transform: translateY(-1px);
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dot {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 999px;
+}
+
+.dotBlue {
+  background: #3b82f6;
+}
+
+.dotAmber {
+  background: #f59e0b;
+}
+
+.dotViolet {
+  background: #8b5cf6;
+}
+
+.dotGreen {
+  background: #10b981;
+}
+
+.dotRed {
+  background: #ef4444;
+}
+
+.dotSky {
+  background: #0ea5e9;
 }
 
 .title {
   margin: 0;
-  font-family: ui-serif, Georgia, serif;
-  font-size: 1.25rem;
-}
-
-.link {
-  color: inherit;
-  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .category {
-  margin: 0.25rem 0 0;
-  font-size: 0.75rem;
+  margin: -0.2rem 0 0;
+  font-size: 0.72rem;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(var(--text), 0.6);
+  color: rgba(var(--text), 0.54);
 }
 
 .overview {
-  margin: 0.75rem 0 0;
-  font-size: 0.875rem;
-  color: rgba(var(--text), 0.75);
+  margin: 0;
+  font-size: 0.97rem;
+  line-height: 1.55;
+  color: rgba(var(--text), 0.8);
+}
+
+.metaList {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.metaItem {
+  margin: 0;
+  font-size: 0.82rem;
+  color: rgba(var(--text), 0.66);
+}
+
+.learnMore {
+  margin-top: auto;
+  border: none;
+  border-top: 1px solid rgba(var(--border), 0.9);
+  background: transparent;
+  color: rgba(var(--text), 0.72);
+  cursor: pointer;
+  font-size: 0.86rem;
+  font-weight: 700;
+  padding: 0.75rem 0 0.2rem;
+  text-align: right;
+}
+
+.learnMore:hover {
+  color: rgb(var(--primary));
 }

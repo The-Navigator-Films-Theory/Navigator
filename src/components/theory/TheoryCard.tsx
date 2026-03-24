@@ -1,21 +1,57 @@
-import { Link } from 'react-router-dom';
 import type { Theory } from '../../types/theory';
 import styles from './TheoryCard.module.scss';
 
 type TheoryCardProps = {
   item: Theory;
+  accentIndex: number;
+  onOpen: (item: Theory) => void;
 };
 
-export default function TheoryCard({ item }: TheoryCardProps) {
+const metadataColors = ['dotBlue', 'dotAmber', 'dotViolet', 'dotGreen', 'dotRed', 'dotSky'];
+
+function truncate(text: string, maxLength: number): string {
+  if (text.length <= maxLength) return text;
+  return `${text.slice(0, maxLength - 1)}…`;
+}
+
+function MetaIcon({ children }: { children: React.ReactNode }) {
+  return <span className={styles.metaIcon} aria-hidden="true">{children}</span>;
+}
+
+export default function TheoryCard({ item, accentIndex, onOpen }: TheoryCardProps) {
+  const colorClass = styles[metadataColors[accentIndex % metadataColors.length]];
+  const thinkers = item.key_thinkers ?? [];
+  const films = item.representative_films ?? [];
+
   return (
     <article className={styles.card}>
-      <h3 className={styles.title}>
-        <Link className={styles.link} to={`/theory/${item.slug}`}>
-          {item.title}
-        </Link>
-      </h3>
+      <div className={styles.headerRow}>
+        <span className={[styles.dot, colorClass].join(' ')} aria-hidden="true" />
+      </div>
+
+      <h3 className={styles.title}>{item.title}</h3>
       {item.category && <p className={styles.category}>{item.category}</p>}
-      <p className={styles.overview}>{item.overview ?? 'No overview yet.'}</p>
+
+      <p className={styles.overview}>{truncate(item.overview ?? 'No overview yet.', 130)}</p>
+
+      <div className={styles.metaList}>
+        <p className={styles.metaItem}>
+          <MetaIcon>👥</MetaIcon>
+          <span>Thinkers: {thinkers.slice(0, 2).join(', ')}{thinkers.length > 2 ? ` +${thinkers.length - 2} more` : ''}</span>
+        </p>
+        <p className={styles.metaItem}>
+          <MetaIcon>🗓</MetaIcon>
+          <span>Context: {truncate(item.history ?? 'Historical notes unavailable.', 68)}</span>
+        </p>
+        <p className={styles.metaItem}>
+          <MetaIcon>🎞</MetaIcon>
+          <span>{films.length} representative films</span>
+        </p>
+      </div>
+
+      <button type="button" className={styles.learnMore} onClick={() => onOpen(item)}>
+        Learn More
+      </button>
     </article>
   );
 }
