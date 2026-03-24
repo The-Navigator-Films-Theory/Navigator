@@ -30,7 +30,9 @@ export type Database = {
         Row: {
           category: string | null
           citations: Json | null
+          color: string | null
           created_at: string
+          description: string | null
           history: string | null
           id: string
           key_points: Json | null
@@ -45,7 +47,9 @@ export type Database = {
         Insert: {
           category?: string | null
           citations?: Json | null
+          color?: string | null
           created_at?: string
+          description?: string | null
           history?: string | null
           id?: string
           key_points?: Json | null
@@ -60,7 +64,9 @@ export type Database = {
         Update: {
           category?: string | null
           citations?: Json | null
+          color?: string | null
           created_at?: string
+          description?: string | null
           history?: string | null
           id?: string
           key_points?: Json | null
@@ -71,6 +77,66 @@ export type Database = {
           status?: string
           title?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      citations: {
+        Row: {
+          academic_significance: string | null
+          author: string | null
+          created_at: string | null
+          critiques: string[] | null
+          description: string | null
+          id: string
+          journal: string | null
+          key_concepts_explained: Json | null
+          key_quotes: string[] | null
+          pages: string | null
+          publisher: string | null
+          status: string
+          theory_ids: string[] | null
+          title: string
+          type: string | null
+          updated_at: string | null
+          year: number | null
+        }
+        Insert: {
+          academic_significance?: string | null
+          author?: string | null
+          created_at?: string | null
+          critiques?: string[] | null
+          description?: string | null
+          id: string
+          journal?: string | null
+          key_concepts_explained?: Json | null
+          key_quotes?: string[] | null
+          pages?: string | null
+          publisher?: string | null
+          status?: string
+          theory_ids?: string[] | null
+          title: string
+          type?: string | null
+          updated_at?: string | null
+          year?: number | null
+        }
+        Update: {
+          academic_significance?: string | null
+          author?: string | null
+          created_at?: string | null
+          critiques?: string[] | null
+          description?: string | null
+          id?: string
+          journal?: string | null
+          key_concepts_explained?: Json | null
+          key_quotes?: string[] | null
+          pages?: string | null
+          publisher?: string | null
+          status?: string
+          theory_ids?: string[] | null
+          title?: string
+          type?: string | null
+          updated_at?: string | null
+          year?: number | null
         }
         Relationships: []
       }
