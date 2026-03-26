@@ -23,6 +23,17 @@ export default function VocabularyHub() {
     loadTerms();
   }, []);
 
+  const filteredTerms = terms.filter((term) => {
+    const matchesSearch =
+      term.term.toLowerCase().includes(search.toLowerCase()) ||
+      term.definition.toLowerCase().includes(search.toLowerCase());
+
+    const matchesDifficulty =
+      difficulty === 'all' || term.difficulty?.toLowerCase() === difficulty;
+
+    return matchesSearch && matchesDifficulty;
+  });
+
   return (
     <section className={styles.page}>
       <h1 className={styles.title}>Vocabulary Hub</h1>
@@ -50,26 +61,21 @@ export default function VocabularyHub() {
 
       {!loading && terms.length === 0 && <p>No vocabulary terms found.</p>}
 
+      {!loading && (
+        <p className={styles.results}>
+          Showing {filteredTerms.length} term{filteredTerms.length === 1 ? '' : 's'}
+        </p>
+      )}
+
       <div className={styles.list}>
-        {terms
-          .filter((term) => {
-            const matchesSearch =
-              term.term.toLowerCase().includes(search.toLowerCase()) ||
-              term.definition.toLowerCase().includes(search.toLowerCase());
-
-            const matchesDifficulty =
-              difficulty === 'all' || term.difficulty?.toLowerCase() === difficulty;
-
-            return matchesSearch && matchesDifficulty;
-          })
-          .map((term) => (
-            <div key={term.id} className={styles.card}>
-              <h3 className={styles.term}>{term.term}</h3>
-              <p className={styles.definition}>{term.definition}</p>
-              {term.difficulty && (
-                <span className={styles.difficulty}>{term.difficulty}</span>
-              )}
-            </div>
+        {filteredTerms.map((term) => (
+          <div key={term.id} className={styles.card}>
+            <h3 className={styles.term}>{term.term}</h3>
+            <p className={styles.definition}>{term.definition}</p>
+            {term.difficulty && (
+              <span className={styles.difficulty}>{term.difficulty}</span>
+            )}
+          </div>
         ))}
       </div>
     </section>
