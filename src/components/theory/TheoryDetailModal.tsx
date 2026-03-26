@@ -78,10 +78,16 @@ export default function TheoryDetailModal({ item, onClose }: TheoryDetailModalPr
               <section>
                 <h3 className={styles.sectionTitle}>Key Thinkers</h3>
                 <div className={styles.pills}>
-                  {(item.key_thinkers ?? []).map((thinker) => (
-                    <span key={thinker} className={styles.pill}>
-                      {thinker}
-                    </span>
+                  {(item.key_thinkers ?? []).map((t: string) => (
+                    <button
+                      key={t}
+                      className={styles.pill}
+                      onClick={() =>
+                        window.open(`https://en.wikipedia.org/wiki/${t.replace(/ /g, "_")}`, "_blank")
+                      }
+                    >
+                      {t}
+                    </button>
                   ))}
                 </div>
               </section>

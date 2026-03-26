@@ -89,18 +89,36 @@
   color: rgb(var(--primary));
 }
 
-/* PILLS */
-.pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-}
-
 .pill {
   background: rgb(var(--panel-2));
   border-radius: 999px;
   padding: 0.4rem 0.8rem;
   font-size: 0.85rem;
+
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  /* Remove default button styles */
+  outline: none;
+}
+
+/* HOVER EFFECT */
+.pill:hover {
+  background: rgb(var(--primary));
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* CLICK FEEDBACK */
+.pill:active {
+  transform: scale(0.95);
+}
+
+/* ACCESSIBILITY (keyboard focus) */
+.pill:focus-visible {
+  outline: 2px solid rgb(var(--primary));
+  outline-offset: 2px;
 }
 
 /* FILMS */
