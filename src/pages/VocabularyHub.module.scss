@@ -13,3 +13,36 @@
   margin: 0;
   color: rgba(var(--text), 0.75);
 }
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card {
+  padding: 16px;
+  border-radius: 12px;
+  background: #1e293b;
+  color: #fff;
+}
+
+.term {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.definition {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #cbd5f5;
+}
+
+.difficulty {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 12px;
+  padding: 4px 8px;
+  background: #334155;
+  border-radius: 6px;
+}

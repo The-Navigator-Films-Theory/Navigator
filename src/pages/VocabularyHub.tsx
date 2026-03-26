@@ -29,11 +29,14 @@ export default function VocabularyHub() {
 
       {!loading && terms.length === 0 && <p>No vocabulary terms found.</p>}
 
-      <div>
+      <div className={styles.list}>
         {terms.map((term) => (
-          <div key={term.id}>
-            <h3>{term.term}</h3>
-            <p>{term.definition}</p>
+          <div key={term.id} className={styles.card}>
+            <h3 className={styles.term}>{term.term}</h3>
+            <p className={styles.definition}>{term.definition}</p>
+            {term.difficulty && (
+              <span className={styles.difficulty}>{term.difficulty}</span>
+            )}
           </div>
         ))}
       </div>
