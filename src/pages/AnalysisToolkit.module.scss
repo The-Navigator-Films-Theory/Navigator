@@ -1,24 +1,112 @@
 .page {
-    min-height: 100vh;
-    background: rgb(var(--background));
-    padding: 2rem 1rem 3rem;
+  min-height: 100vh;
+  background: rgb(var(--background));
+  padding: 2rem 1rem 3rem;
+}
+
+.container {
+  width: min(72rem, 100%);
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
+.title {
+  margin: 0;
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.subtitle {
+  margin-top: 0.6rem;
+  color: rgba(var(--text), 0.7);
+  font-size: 1rem;
+}
+
+/* STATES */
+
+.state {
+  margin-top: 1.5rem;
+  color: rgba(var(--text), 0.65);
+  font-size: 0.95rem;
+}
+
+/* GRID */
+
+.grid {
+  margin-top: 1.8rem;
+  display: grid;
+  gap: 1rem;
+}
+
+/* CARD */
+
+.card {
+  border: 1px solid rgba(var(--border), 1);
+  border-radius: 0.9rem;
+  padding: 1.1rem;
+  background: rgb(var(--surface));
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.08);
+
+  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(17, 24, 39, 0.12);
+  border-color: rgba(var(--primary), 0.35);
+}
+
+/* CARD CONTENT */
+
+.cardTitle {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.meta {
+  margin: 0.35rem 0 0.6rem;
+  color: rgba(var(--text), 0.6);
+  font-size: 0.85rem;
+}
+
+.description {
+  margin: 0;
+  font-size: 0.95rem;
+  color: rgba(var(--text), 0.75);
+  line-height: 1.5;
+}
+
+/* THEORY TAGS */
+
+.theoryList {
+  margin-top: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.theoryTag {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.4rem;
+  background: rgba(var(--primary), 0.12);
+  color: rgb(var(--primary));
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+/* RESPONSIVE */
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  .container {
-    width: min(72rem, 100%);
-    margin: 0 auto;
-    padding: 1.5rem 1rem;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
   }
-  
-  .title {
-    margin: 0;
-    font-size: 2.4rem;
-    font-weight: 800;
-    line-height: 1.1;
-  }
-  
-  .subtitle {
-    margin-top: 0.6rem;
-    color: rgba(var(--text), 0.7);
-    font-size: 1rem;
-  }
+}
