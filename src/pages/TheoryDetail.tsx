@@ -22,6 +22,7 @@ export default function TheoryDetail() {
         Back to library
       </Link>
       <h1 className={styles.title}>{data.title}</h1>
+      <p className={styles.caption}>{data.overview}</p>
       <p className={styles.description}>{data.description}</p>
       {data.key_thinkers && data.key_thinkers.length > 0 && (
         <section>
