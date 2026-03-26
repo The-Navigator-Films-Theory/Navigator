@@ -7,21 +7,35 @@
   box-shadow: 0 8px 24px rgba(17, 24, 39, 0.08);
   padding: 1.2rem 1.2rem 0.85rem;
   min-height: 19.5rem;
+
+  cursor: pointer;
+
   transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
 }
 
 .card:hover {
   border-color: rgba(var(--primary), 0.35);
   box-shadow: 0 12px 30px rgba(17, 24, 39, 0.12);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
+.card:active {
+  transform: scale(0.98);
+}
+
+.card:focus-visible {
+  outline: 2px solid rgb(var(--primary));
+  outline-offset: 3px;
+}
+
+/* HEADER */
 .headerRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+/* DOT COLORS */
 .dot {
   width: 1.1rem;
   height: 1.1rem;
@@ -52,6 +66,7 @@
   background: #0ea5e9;
 }
 
+/* TEXT */
 .title {
   margin: 0;
   font-size: 1.8rem;
@@ -75,28 +90,39 @@
   color: rgba(var(--text), 0.8);
 }
 
+/* META */
 .metaList {
   display: grid;
   gap: 0.45rem;
 }
 
 .metaItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
   margin: 0;
   font-size: 0.82rem;
   color: rgba(var(--text), 0.66);
 }
 
+/* ICON */
+.metaIcon {
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+/* LEARN MORE (visual only, not clickable) */
 .learnMore {
   margin-top: auto;
-  border: none;
   border-top: 1px solid rgba(var(--border), 0.9);
   background: transparent;
   color: rgba(var(--text), 0.72);
-  cursor: pointer;
   font-size: 0.86rem;
   font-weight: 700;
   padding: 0.75rem 0 0.2rem;
   text-align: right;
+
+  pointer-events: none; /* ensures full card is clickable */
 }
 
 .learnMore:hover {
