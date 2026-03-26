@@ -1,10 +1,15 @@
 .card {
   display: grid;
   gap: 0.75rem;
+
   border: 1px solid rgba(var(--border), 1);
   border-radius: 1rem;
+
   background: rgb(var(--surface));
+
+  /* default soft shadow */
   box-shadow: 0 8px 24px rgba(17, 24, 39, 0.08);
+
   padding: 1.2rem 1.2rem 0.85rem;
   min-height: 19.5rem;
 
@@ -13,9 +18,13 @@
   transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
 }
 
+/* HOVER STATE */
 .card:hover {
-  border-color: rgba(var(--primary), 0.35);
-  box-shadow: 0 12px 30px rgba(17, 24, 39, 0.12);
+  border-color: rgb(var(--primary)); /* 👈 1px blue border */
+
+  /* 👇 gray shadow (clean + modern) */
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+
   transform: translateY(-2px);
 }
 
@@ -42,29 +51,12 @@
   border-radius: 999px;
 }
 
-.dotBlue {
-  background: #3b82f6;
-}
-
-.dotAmber {
-  background: #f59e0b;
-}
-
-.dotViolet {
-  background: #8b5cf6;
-}
-
-.dotGreen {
-  background: #10b981;
-}
-
-.dotRed {
-  background: #ef4444;
-}
-
-.dotSky {
-  background: #0ea5e9;
-}
+.dotBlue { background: #3b82f6; }
+.dotAmber { background: #f59e0b; }
+.dotViolet { background: #8b5cf6; }
+.dotGreen { background: #10b981; }
+.dotRed { background: #ef4444; }
+.dotSky { background: #0ea5e9; }
 
 /* TEXT */
 .title {
@@ -72,6 +64,12 @@
   font-size: 1.8rem;
   font-weight: 800;
   letter-spacing: -0.02em;
+  transition: color 150ms ease;
+}
+
+/* 👇 Title turns blue */
+.card:hover .title {
+  color: rgb(var(--primary));
 }
 
 .category {
@@ -111,7 +109,7 @@
   line-height: 1;
 }
 
-/* LEARN MORE (visual only, not clickable) */
+/* LEARN MORE */
 .learnMore {
   margin-top: auto;
   border-top: 1px solid rgba(var(--border), 0.9);
@@ -120,11 +118,15 @@
   font-size: 0.86rem;
   font-weight: 700;
   padding: 0.75rem 0 0.2rem;
-  text-align: right;
+  text-align: center;
 
-  pointer-events: none; /* ensures full card is clickable */
+  pointer-events: none;
+  transition: background 150ms ease, color 150ms ease;
 }
 
-.learnMore:hover {
+/* 👇 Blue hover section */
+.card:hover .learnMore {
+  background: rgba(var(--primary), 0.12);
   color: rgb(var(--primary));
+  border-radius: 0 0 1rem 1rem;
 }
