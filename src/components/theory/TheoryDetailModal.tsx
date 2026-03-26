@@ -32,28 +32,39 @@ export default function TheoryDetailModal({ item, onClose }: TheoryDetailModalPr
   const citationItems = linkedCitations.length > 0 ? linkedCitations : fallbackCitations;
 
   return (
-    <div className={styles.overlay} role="dialog" aria-modal="true" aria-label={item.title}>
+    <div className={styles.overlay} role="dialog" aria-modal="true">
       <div className={styles.modal}>
+        {/* HEADER */}
         <header className={styles.header}>
-          <h2 className={styles.modalTitle}>{item.title}</h2>
-          <button type="button" className={styles.closeButton} onClick={onClose} aria-label="Close dialog">
+          <div className={styles.titleBlock}>
+            <h2 className={styles.modalTitle}>{item.title}</h2>
+            {item.overview && <p className={styles.caption}>{item.overview}</p>}
+          </div>
+
+          <button className={styles.closeButton} onClick={onClose}>
             ×
           </button>
         </header>
 
+        {/* CONTENT */}
         <div className={styles.content}>
+          {/* LEFT SIDE */}
           <section className={styles.primaryCol}>
             <h3 className={styles.sectionTitle}>Overview</h3>
-            <p className={styles.paragraph}>{item.overview ?? 'No overview yet.'}</p>
+            <p className={styles.paragraph}>
+              {item.description ?? 'No overview yet.'}
+            </p>
 
             <h3 className={styles.sectionTitle}>Historical Context</h3>
-            <p className={styles.paragraph}>{item.history ?? 'Historical context not available yet.'}</p>
+            <p className={styles.paragraph}>
+              {item.history ?? 'Historical context not available yet.'}
+            </p>
 
-            {item.key_points && item.key_points.length > 0 && (
+            {(item.key_points ?? []).length > 0 && (
               <>
                 <h3 className={styles.sectionTitle}>Key Points</h3>
                 <ul className={styles.pointList}>
-                  {item.key_points.map((point) => (
+                  {(item.key_points ?? []).map((point) => (
                     <li key={point}>{point}</li>
                   ))}
                 </ul>
@@ -61,12 +72,13 @@ export default function TheoryDetailModal({ item, onClose }: TheoryDetailModalPr
             )}
           </section>
 
+          {/* RIGHT SIDE */}
           <aside className={styles.sideCol}>
-            {item.key_thinkers && item.key_thinkers.length > 0 && (
+            {(item.key_thinkers ?? []).length > 0 && (
               <section>
                 <h3 className={styles.sectionTitle}>Key Thinkers</h3>
                 <div className={styles.pills}>
-                  {item.key_thinkers.map((thinker) => (
+                  {(item.key_thinkers ?? []).map((thinker) => (
                     <span key={thinker} className={styles.pill}>
                       {thinker}
                     </span>
@@ -81,7 +93,11 @@ export default function TheoryDetailModal({ item, onClose }: TheoryDetailModalPr
                 <div className={styles.filmList}>
                   {filmItems.map((film) => (
                     <article key={film.title} className={styles.filmCard}>
-                      <img className={styles.filmImage} src={film.image} alt={film.title} />
+                      <img
+                        className={styles.filmImage}
+                        src={film.image}
+                        alt={film.title}
+                      />
                       <div>
                         <p className={styles.filmTitle}>{film.title}</p>
                         <p className={styles.filmSubtitle}>{film.subtitle}</p>
@@ -99,12 +115,20 @@ export default function TheoryDetailModal({ item, onClose }: TheoryDetailModalPr
                   {citationItems.map((citation) => (
                     <blockquote key={citation.id} className={styles.citationCard}>
                       <p className={styles.citationTitle}>{citation.title}</p>
+
                       {(citation.author || citation.year) && (
                         <p className={styles.citationMeta}>
-                          {[citation.author, citation.year ? `(${citation.year})` : null].filter(Boolean).join(' ')}
+                          {[citation.author, citation.year ? `(${citation.year})` : null]
+                            .filter(Boolean)
+                            .join(' ')}
                         </p>
                       )}
-                      {citation.description && <p className={styles.citationExcerpt}>{citation.description}</p>}
+
+                      {citation.description && (
+                        <p className={styles.citationExcerpt}>
+                          {citation.description}
+                        </p>
+                      )}
                     </blockquote>
                   ))}
                 </div>
@@ -113,14 +137,15 @@ export default function TheoryDetailModal({ item, onClose }: TheoryDetailModalPr
           </aside>
         </div>
 
+        {/* FOOTER */}
         <footer className={styles.footer}>
-          <button type="button" className={styles.buttonPrimary}>
+          <button className={styles.buttonPrimary}>
             Test Your Knowledge
           </button>
-          <button type="button" className={styles.buttonSecondary}>
+          <button className={styles.buttonSecondary}>
             Analyze a Film
           </button>
-          <button type="button" className={styles.buttonText}>
+          <button className={styles.buttonText}>
             Join Discussion
           </button>
         </footer>
