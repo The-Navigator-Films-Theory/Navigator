@@ -1,33 +1,34 @@
 import { CheckCircle2, XCircle } from 'lucide-react';
-import React, { useState } from 'react';
+import React from 'react';
 import type { QuizQuestion as IQuizQuestion, QuizQuestionOption } from '../../types';
 import Button from '../ui/Button';
 import styles from './QuizQuestion.module.scss';
 
 interface QuizQuestionProps {
   question: IQuizQuestion;
-  onNext: (isCorrect: boolean) => void;
+  selectedAnswer: string | null;
+  isCorrect: boolean;
+  onSelectAnswer: (answerId: string) => void;
+  onNext: () => void;
 }
 
-const QuizQuestion: React.FC<QuizQuestionProps> = ({ question, onNext }) => {
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  const [isAnswered, setIsAnswered] = useState(false);
-
-  const handleOptionClick = (optionId: string) => {
-    if (isAnswered) return;
-    setSelectedOption(optionId);
-    setIsAnswered(true);
-  };
+const QuizQuestion: React.FC<QuizQuestionProps> = ({
+  question,
+  selectedAnswer,
+  onSelectAnswer,
+  onNext,
+}) => {
+  const isAnswered = selectedAnswer !== null;
 
   const getOptionClass = (optionId: string) => {
     if (!isAnswered) {
       return styles.option;
     }
-    const isCorrect = optionId === question.correctAnswer;
-    if (selectedOption === optionId) {
-      return isCorrect ? styles.correct : styles.incorrect;
+    const isCorrectChoice = optionId === question.correctAnswer;
+    if (selectedAnswer === optionId) {
+      return isCorrectChoice ? styles.correct : styles.incorrect;
     }
-    if (isCorrect) {
+    if (isCorrectChoice) {
       return styles.correct;
     }
     return styles.option;
@@ -43,11 +44,11 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({ question, onNext }) => {
           <div
             key={option.id}
             className={getOptionClass(option.id)}
-            onClick={() => handleOptionClick(option.id)}
+            onClick={() => onSelectAnswer(option.id)}
           >
             <span className={styles.optionLetter}>{getOptionLetter(index)}</span>
             <span className={styles.optionText}>{option.text}</span>
-            {isAnswered && selectedOption === option.id && (
+            {isAnswered && selectedAnswer === option.id && (
               <span className={styles.optionIcon}>
                 {option.id === question.correctAnswer ? (
                   <CheckCircle2 size={20} />
@@ -56,11 +57,13 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({ question, onNext }) => {
                 )}
               </span>
             )}
-             {isAnswered && option.id === question.correctAnswer && selectedOption !== option.id && (
-              <span className={styles.optionIcon}>
-                <CheckCircle2 size={20} />
-              </span>
-            )}
+            {isAnswered &&
+              option.id === question.correctAnswer &&
+              selectedAnswer !== option.id && (
+                <span className={styles.optionIcon}>
+                  <CheckCircle2 size={20} />
+                </span>
+              )}
           </div>
         ))}
       </div>
@@ -73,10 +76,7 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({ question, onNext }) => {
         </div>
       )}
       {isAnswered && (
-        <Button
-          onClick={() => onNext(selectedOption === question.correctAnswer)}
-          className={styles.nextButton}
-        >
+        <Button onClick={onNext} className={styles.nextButton}>
           Next Question
         </Button>
       )}
