@@ -1,0 +1,44 @@
+.quizPage {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.backLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--color-primary);
+  }
+}
+
+.progress {
+  font-weight: 600;
+}
+
+.results {
+  text-align: center;
+  h2 {
+    margin-bottom: 1rem;
+  }
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+}
