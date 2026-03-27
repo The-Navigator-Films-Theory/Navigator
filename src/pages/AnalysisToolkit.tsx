@@ -1,11 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import styles from './AnalysisToolkit.module.scss';
 import { fetchFilms, type Film } from '../lib/queries/films';
+
+const posterFallback =
+  'https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?w=400';
+
+const theoryColors = [
+  styles.tagRed,
+  styles.tagBlue,
+  styles.tagPurple,
+  styles.tagTeal,
+  styles.tagOrange,
+  styles.tagGreen,
+];
+
+function getTheoryTagClass(index: number) {
+  return theoryColors[index % theoryColors.length];
+}
 
 export default function AnalysisToolkit() {
   const [films, setFilms] = useState<Film[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     const loadFilms = async () => {
@@ -25,50 +42,111 @@ export default function AnalysisToolkit() {
     loadFilms();
   }, []);
 
+  const filteredFilms = useMemo(() => {
+    const search = query.trim().toLowerCase();
+
+    if (!search) return films;
+
+    return films.filter((film) => {
+      const title = film.title.toLowerCase();
+      const director = film.director?.toLowerCase() ?? '';
+      return title.includes(search) || director.includes(search);
+    });
+  }, [films, query]);
+
   return (
     <main className={styles.page}>
       <div className={styles.container}>
-        <h1 className={styles.title}>Analysis Toolkit</h1>
-        <p className={styles.subtitle}>
-          Use guided tools and frameworks to support deeper film and media analysis.
-        </p>
+        <header className={styles.hero}>
+          <h1 className={styles.title}>Film Analysis Toolkit</h1>
+          <p className={styles.subtitle}>
+            Apply theoretical frameworks to analyze films with guided templates and
+            reading recommendations.
+          </p>
+          <p className={styles.subtitleSecondary}>
+            Choose a film and theoretical approach to begin your analysis.
+          </p>
+
+          <div className={styles.searchWrap}>
+            <input
+              type="text"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search films by title or director..."
+              className={styles.searchInput}
+            />
+            <span className={styles.searchIcon} aria-hidden="true">
+              ⌕
+            </span>
+          </div>
+        </header>
 
         {loading ? (
           <p className={styles.state}>Loading films...</p>
         ) : error ? (
           <p className={styles.state}>{error}</p>
-        ) : films.length === 0 ? (
-          <p className={styles.state}>No films available yet.</p>
+        ) : filteredFilms.length === 0 ? (
+          <p className={styles.state}>No films match your search.</p>
         ) : (
-          <div className={styles.grid}>
-            {films.map((film) => (
-              <article key={film.id} className={styles.card}>
-                <h2 className={styles.cardTitle}>{film.title}</h2>
+          <section className={styles.grid}>
+            {filteredFilms.map((film) => {
+              const theories = film.relevant_theories ?? [];
 
-                {film.director || film.year ? (
-                  <p className={styles.meta}>
-                    {[film.director, film.year].filter(Boolean).join(' • ')}
-                  </p>
-                ) : null}
+              return (
+                <article key={film.id} className={styles.card}>
+                  <div className={styles.cardHeader}>
+                    <img
+                      src={film.poster_url || posterFallback}
+                      alt={film.title}
+                      className={styles.poster}
+                    />
 
-                {film.synopsis ? (
-                  <p className={styles.description}>{film.synopsis}</p>
-                ) : (
-                  <p className={styles.description}>No synopsis available.</p>
-                )}
-
-                {film.relevant_theories && film.relevant_theories.length > 0 ? (
-                  <div className={styles.theoryList}>
-                    {film.relevant_theories.map((theory) => (
-                      <span key={theory} className={styles.theoryTag}>
-                        {theory}
-                      </span>
-                    ))}
+                    <div className={styles.cardHeading}>
+                      <h2 className={styles.cardTitle}>{film.title}</h2>
+                      <p className={styles.meta}>
+                        {film.director || film.year
+                          ? [film.director, film.year].filter(Boolean).join(' ')
+                          : 'Film details unavailable'}
+                      </p>
+                    </div>
                   </div>
-                ) : null}
-              </article>
-            ))}
-          </div>
+
+                  <p className={styles.description}>
+                    {film.synopsis || 'No synopsis available.'}
+                  </p>
+
+                  {theories.length > 0 && (
+                    <>
+                      <p className={styles.sectionLabel}>Applicable Theories:</p>
+
+                      <div className={styles.theoryList}>
+                        {theories.map((theory, index) => (
+                          <span
+                            key={`${film.id}-${theory}`}
+                            className={`${styles.theoryTag} ${getTheoryTagClass(index)}`}
+                          >
+                            {theory}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className={styles.buttonList}>
+                        {theories.map((theory) => (
+                          <button
+                            key={`${film.id}-${theory}-button`}
+                            type="button"
+                            className={styles.actionButton}
+                          >
+                            Analyze with {theory}
+                          </button>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </article>
+              );
+            })}
+          </section>
         )}
       </div>
     </main>

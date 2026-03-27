@@ -35,6 +35,18 @@ function toFilm(row: FilmRow): Film {
   };
 }
 
+function dedupeFilms(films: Film[]): Film[] {
+  return films.filter(
+    (film, index, self) =>
+      index ===
+      self.findIndex(
+        (item) =>
+          item.title.trim().toLowerCase() === film.title.trim().toLowerCase() &&
+          (item.year ?? null) === (film.year ?? null)
+      )
+  );
+}
+
 export async function fetchFilms(): Promise<Film[]> {
   const { data, error } = await (supabase as any)
     .from('films')
@@ -47,7 +59,9 @@ export async function fetchFilms(): Promise<Film[]> {
   }
 
   const rows = (data ?? []) as FilmRow[];
-  return rows.map(toFilm);
+  const films = rows.map(toFilm);
+
+  return dedupeFilms(films);
 }
 
 export async function fetchFilmById(id: string): Promise<Film | null> {
