@@ -98,8 +98,9 @@ export default function VocabularyHub() {
       <div className={styles.hero}>
         <h1 className={styles.heroTitle}>Film Theory Vocabulary</h1>
         <p className={styles.heroText}>
-          Master the language of film theory with our vocabulary library. Explore key
-          concepts, build stronger critical vocabulary, and connect related ideas.
+          Master the language of film theory with our comprehensive vocabulary library.
+          From foundational concepts to advanced theoretical terms, build your critical
+          vocabulary for deeper understanding and analysis.
         </p>
         <p className={styles.heroMeta}>
           {terms.length} terms • Beginner to Advanced • Cross-referenced
