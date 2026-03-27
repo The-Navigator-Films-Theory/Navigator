@@ -38,7 +38,8 @@
 
 .iconWrap,
 .iconWrapBlue,
-.iconWrapGreen {
+.iconWrapGreen,
+.iconWrapPurple {
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 0.85rem;
@@ -51,6 +52,12 @@
   color: #9333ea;
   background: rgba(147, 51, 234, 0.14);
 }
+
+.iconWrapPurple {
+  color: #9333ea;
+  background: rgba(147, 51, 234, 0.14);
+}
+
 
 .iconWrapBlue {
   color: rgb(var(--primary));
@@ -77,7 +84,8 @@
 
 .metaPill,
 .metaPillBlue,
-.metaPillGreen {
+.metaPillGreen,
+.metaPillPurple {
   margin: 0;
   border-radius: 0.65rem;
   padding: 0.75rem 0.85rem;
@@ -86,6 +94,11 @@
 }
 
 .metaPill {
+  background: rgba(147, 51, 234, 0.1);
+  color: #7e22ce;
+}
+
+.metaPillPurple {
   background: rgba(147, 51, 234, 0.1);
   color: #7e22ce;
 }
@@ -128,4 +141,62 @@
   .cardGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+}
+
+.progressSection {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(var(--border), 0.6);
+}
+
+.progressTitle {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+}
+
+.progressGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.progressCard {
+  background: rgb(var(--surface));
+  border: 1px solid rgba(var(--border), 0.6);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+.progressIconWrap {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  background: rgba(var(--primary), 0.1);
+  color: rgb(var(--primary));
+}
+
+.progressCardTitle {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.progressCardValue {
+  margin: 0.5rem 0;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.progressCardSub {
+  margin: 0;
+  color: rgb(var(--text-soft));
+  font-size: 1rem;
 }

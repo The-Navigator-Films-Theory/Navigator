@@ -67,19 +67,21 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
           </div>
         ))}
       </div>
-      {isAnswered && (
-        <div className={styles.explanation}>
+      <div className={styles.bottomContainer}>
+        <div className={`${styles.explanation} ${isAnswered ? styles.visible : ''}`}>
           <p>
             <strong>Explanation:</strong>
           </p>
           <p>{question.explanation}</p>
         </div>
-      )}
-      {isAnswered && (
-        <Button onClick={onNext} className={styles.nextButton}>
+        <Button
+          onClick={onNext}
+          className={styles.nextButton}
+          disabled={!isAnswered}
+        >
           Next Question
         </Button>
-      )}
+      </div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { Brain, Gamepad2, Layers } from 'lucide-react';
+import { Award, BrainCircuit, Code, Gamepad2, Layers, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ErrorState, Loading } from '../components/common';
 import { fetchLearningHubStats } from '../lib/queries/quiz';
@@ -26,15 +26,15 @@ export default function InteractiveLearning() {
 
       <div className={styles.cardGrid}>
         <article className={styles.card}>
-          <div className={styles.iconWrap}>
-            <Brain size={26} />
+          <div className={styles.iconWrapPurple}>
+            <Code size={26} />
           </div>
           <h2 className={styles.cardTitle}>Theory Quizzes</h2>
           <p className={styles.cardBody}>
             Test your understanding with comprehensive quizzes covering all major
             theoretical frameworks.
           </p>
-          <p className={styles.metaPill}>
+          <p className={styles.metaPillPurple}>
             {data.questionCount} questions across {data.theoryCount} theories
           </p>
           <Link to="/quiz/general" className={styles.primaryButton}>
@@ -74,6 +74,44 @@ export default function InteractiveLearning() {
             Play Games
           </button>
         </article>
+      </div>
+
+      <div className={styles.progressSection}>
+        <h2 className={styles.progressTitle}>Learning Progress</h2>
+        <div className={styles.progressGrid}>
+          <div className={styles.progressCard}>
+            <div className={styles.progressIconWrap}>
+              <Award />
+            </div>
+            <h3 className={styles.progressCardTitle}>Quiz Best Score</h3>
+            <p className={styles.progressCardValue}>--</p>
+            <p className={styles.progressCardSub}>Complete a quiz to see your score</p>
+          </div>
+          <div className={styles.progressCard}>
+            <div className={styles.progressIconWrap}>
+              <BrainCircuit />
+            </div>
+            <h3 className={styles.progressCardTitle}>Cards Studied</h3>
+            <p className={styles.progressCardValue}>--</p>
+            <p className={styles.progressCardSub}>Start studying to track progress</p>
+          </div>
+          <div className={styles.progressCard}>
+            <div className={styles.progressIconWrap}>
+              <Gamepad2 />
+            </div>
+            <h3 className={styles.progressCardTitle}>Games Played</h3>
+            <p className={styles.progressCardValue}>0</p>
+            <p className={styles.progressCardSub}>Play games to track progress</p>
+          </div>
+          <div className={styles.progressCard}>
+            <div className={styles.progressIconWrap}>
+              <Target />
+            </div>
+            <h3 className={styles.progressCardTitle}>Theories Mastered</h3>
+            <p className={styles.progressCardValue}>--</p>
+            <p className={styles.progressCardSub}>Based on quiz performance</p>
+          </div>
+        </div>
       </div>
     </section>
   );
