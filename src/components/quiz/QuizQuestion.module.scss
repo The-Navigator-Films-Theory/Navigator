@@ -1,12 +1,18 @@
 .quizQuestion {
-  width: 100%;
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .questionText {
   font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   text-align: center;
+  line-height: 1.4;
 }
 
 .optionsGrid {
@@ -19,15 +25,16 @@
   display: flex;
   align-items: center;
   padding: 1rem;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border: 1px solid #e0e0e0;
+  border-radius: 0.75rem;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  background-color: var(--color-background);
+  background-color: white;
 
   &:hover {
     border-color: var(--color-primary);
-    box-shadow: var(--shadow-sm);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
 }
 
@@ -35,18 +42,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  border: 1px solid var(--color-border);
-  margin-right: 1rem;
+  border: 1px solid #d1d5db;
+  margin-right: 1.25rem;
   font-size: 0.9rem;
   font-weight: 600;
   flex-shrink: 0;
+  color: #4b5563;
 }
 
 .optionText {
   flex-grow: 1;
+  font-size: 1.05rem;
+  font-weight: 500;
 }
 
 .optionIcon {
@@ -55,53 +65,72 @@
 
 .correct {
   @extend .option;
-  border-color: var(--color-success);
-  background-color: #e6f7f0;
-  color: var(--color-success-dark);
+  border-color: #10b981;
+  background-color: #f0fdfa;
+  color: #059669;
 
   .optionLetter {
-    border-color: var(--color-success);
-    background-color: var(--color-success);
+    border-color: #10b981;
+    background-color: #10b981;
     color: white;
   }
 
   .optionIcon {
-    color: var(--color-success);
+    color: #10b981;
   }
 }
 
 .incorrect {
   @extend .option;
-  border-color: var(--color-danger);
-  background-color: #fdecea;
-  color: var(--color-danger-dark);
+  border-color: #ef4444;
+  background-color: #fef2f2;
+  color: #dc2626;
 
   .optionLetter {
-    border-color: var(--color-danger);
-    background-color: var(--color-danger);
+    border-color: #ef4444;
+    background-color: #ef4444;
     color: white;
   }
 
   .optionIcon {
-    color: var(--color-danger);
+    color: #ef4444;
   }
 }
 
 .explanation {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   padding: 1.5rem;
-  background-color: var(--color-background-offset);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
-  font-size: 0.95rem;
+  background-color: #f3f4f6;
+  border-radius: 0.75rem;
+  font-size: 1rem;
   line-height: 1.6;
+  color: #374151;
 
   p {
     margin: 0;
   }
+
+  strong {
+    font-weight: 600;
+    color: #1f2937;
+  }
 }
 
 .nextButton {
-  margin-top: 2rem;
+  display: block;
   width: 100%;
+  margin-top: 2rem;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--color-primary-dark);
+  }
 }
