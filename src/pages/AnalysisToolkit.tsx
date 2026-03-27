@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './AnalysisToolkit.module.scss';
 import { fetchFilms, type Film } from '../lib/queries/films';
 
@@ -45,6 +46,7 @@ function formatTheoryName(theory: string): string {
 }
 
 export default function AnalysisToolkit() {
+  const navigate = useNavigate();
   const [films, setFilms] = useState<Film[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -159,6 +161,13 @@ export default function AnalysisToolkit() {
                             key={`${film.id}-${theory}-button`}
                             type="button"
                             className={styles.actionButton}
+                            onClick={() =>
+                              navigate(
+                                `/analysis/${film.id}?theory=${encodeURIComponent(
+                                  formatTheoryName(theory)
+                                )}`
+                              )
+                            }
                           >
                             Analyze with {formatTheoryName(theory)}
                           </button>
