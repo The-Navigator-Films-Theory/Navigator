@@ -25,6 +25,25 @@ function formatMeta(director: string | null, year: number | null) {
   return '';
 }
 
+function formatTheoryName(theory: string): string {
+  const trimmed = theory.trim();
+  const lower = trimmed.toLowerCase();
+
+  if (lower.endsWith('theory')) {
+    return trimmed
+      .split(' ')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
+
+  return (
+    trimmed
+      .split(' ')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ') + ' Theory'
+  );
+}
+
 export default function AnalysisToolkit() {
   const [films, setFilms] = useState<Film[]>([]);
   const [loading, setLoading] = useState(true);
@@ -129,7 +148,7 @@ export default function AnalysisToolkit() {
                             key={`${film.id}-${theory}`}
                             className={`${styles.theoryTag} ${getTheoryTagClass(index)}`}
                           >
-                            {theory}
+                            {formatTheoryName(theory)}
                           </span>
                         ))}
                       </div>
@@ -141,7 +160,7 @@ export default function AnalysisToolkit() {
                             type="button"
                             className={styles.actionButton}
                           >
-                            Analyze with {theory}
+                            Analyze with {formatTheoryName(theory)}
                           </button>
                         ))}
                       </div>
