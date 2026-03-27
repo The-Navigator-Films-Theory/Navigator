@@ -5,6 +5,7 @@ const links = [
   { to: '/', label: 'Home' },
   { to: '/theory', label: 'Theory Library' },
   { to: '/vocabulary', label: 'Vocabulary Hub' },
+  { to: '/learn', label: 'Interactive Learning' },
   { to: '/admin', label: 'Community' },
 ];
 

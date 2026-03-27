@@ -1,4 +1,4 @@
-import { quizQuestions } from '../../data/raw-data/quizzes';
+import { flashcards, games, quizQuestions } from '../../data/raw-data/quizzes';
 import type { QuizQuestion } from '../../types';
 
 type FetchQuizQuestionsParams = {
@@ -42,5 +42,20 @@ export async function fetchQuizStats(): Promise<{
   return {
     questionCount: quizQuestions.length,
     theoryCount,
+  };
+}
+
+export async function fetchLearningHubStats(): Promise<{
+  questionCount: number;
+  theoryCount: number;
+  flashcardCount: number;
+  gameCount: number;
+}> {
+  const quizStats = await fetchQuizStats();
+
+  return {
+    ...quizStats,
+    flashcardCount: flashcards.length,
+    gameCount: games.length,
   };
 }
