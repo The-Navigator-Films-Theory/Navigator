@@ -25,7 +25,14 @@
   letter-spacing: -0.02em;
 }
 
-.overview {
+.caption {
+  font-size: 1rem;
+  color: #6b7280; // soft gray
+  margin-top: 4px;
+  margin-bottom: 16px;
+}
+
+.description {
   margin: 0;
   color: rgba(var(--text), 0.8);
   line-height: 1.6;

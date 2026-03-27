@@ -5,221 +5,240 @@
   display: grid;
   place-items: center;
   padding: 1rem;
-  background: rgba(15, 23, 42, 0.35);
-  backdrop-filter: blur(3px);
+  background: rgba(15, 23, 42, 0.18);
 }
 
 .modal {
-  width: min(980px, 100%);
-  max-height: 90vh;
+  width: min(1200px, 100%);
+  max-height: 95vh;
   overflow: auto;
-  border: 1px solid rgba(var(--border), 1);
-  border-radius: 1rem;
   background: rgb(var(--surface));
-  box-shadow: 0 24px 64px rgba(17, 24, 39, 0.24);
+  border-radius: 1rem;
+  border: 1px solid rgba(var(--border), 1);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
 }
 
+/* HEADER */
 .header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(var(--border), 1);
-  padding: 0.95rem 1.1rem;
+  align-items: flex-start;
+  padding: 2rem 1.5rem 1rem;
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
 .modalTitle {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 2rem;
   font-weight: 800;
+}
+
+.caption {
+  margin: 0;
+  font-size: 1rem;
+  color: rgba(var(--text), 0.7);
+  max-width: 700px;
 }
 
 .closeButton {
   border: none;
   background: transparent;
-  color: rgba(var(--text), 0.6);
+  font-size: 1.8rem;
   cursor: pointer;
-  font-size: 1.4rem;
-  line-height: 1;
 }
 
+/* CONTENT */
 .content {
   display: grid;
-  gap: 1.25rem;
-  padding: 1.25rem;
+  gap: 3rem;
+  padding: 1rem 1.5rem 2rem;
 }
 
 .primaryCol {
   display: grid;
-  align-content: start;
-  gap: 0.75rem;
+  gap: 1.5rem;
 }
 
 .sideCol {
   display: grid;
-  align-content: start;
-  gap: 1rem;
+  gap: 2rem;
+}
+
+.sectionHeading {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.3rem;
+}
+
+.sectionHeading svg {
+  color: rgb(var(--text));
+  flex-shrink: 0;
 }
 
 .sectionTitle {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 800;
 }
 
 .paragraph {
   margin: 0;
-  color: rgba(var(--text), 0.78);
-  line-height: 1.65;
+  line-height: 1.7;
+  color: rgba(var(--text), 0.8);
 }
 
+/* POINTS */
 .pointList {
-  margin: 0;
-  padding-left: 1.1rem;
-  color: rgba(var(--text), 0.82);
+  padding-left: 1.2rem;
   display: grid;
-  gap: 0.4rem;
+  gap: 0.6rem;
 }
 
+.pointList li::marker {
+  color: rgb(var(--primary));
+}
+
+/* PILLS */
 .pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.75rem;
 }
 
 .pill {
-  border-radius: 999px;
   background: rgb(var(--panel-2));
-  border: 1px solid rgba(var(--border), 0.9);
-  color: rgba(var(--text), 0.75);
-  padding: 0.3rem 0.6rem;
-  font-size: 0.76rem;
-  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
 }
 
+.pill:hover {
+  background: rgb(var(--primary));
+  color: white;
+  transform: translateY(-1px);
+}
+
+.pill:active {
+  transform: scale(0.95);
+}
+
+.pill:focus-visible {
+  outline: 2px solid rgb(var(--primary));
+  outline-offset: 2px;
+}
+
+/* FILMS */
 .filmList {
   display: grid;
-  gap: 0.55rem;
+  gap: 0.8rem;
 }
 
 .filmCard {
   display: grid;
-  grid-template-columns: 58px 1fr;
-  gap: 0.55rem;
-  align-items: center;
-  border: 1px solid rgba(var(--border), 1);
-  border-radius: 0.65rem;
-  padding: 0.3rem;
+  grid-template-columns: 60px 1fr;
+  gap: 0.8rem;
+  padding: 0.6rem;
   background: rgb(var(--panel-2));
+  border-radius: 0.6rem;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.filmCard:hover {
+  transform: translateY(-2px);
+  background: rgba(var(--primary), 0.08);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+}
+
+.filmCard:active {
+  transform: scale(0.98);
 }
 
 .filmImage {
-  width: 58px;
-  height: 44px;
-  border-radius: 0.45rem;
+  width: 60px;
+  height: 45px;
   object-fit: cover;
+  border-radius: 0.3rem;
 }
 
 .filmTitle {
   margin: 0;
-  font-size: 0.86rem;
   font-weight: 700;
 }
 
 .filmSubtitle {
-  margin: 0.12rem 0 0;
-  font-size: 0.74rem;
-  color: rgba(var(--text), 0.62);
+  margin: 0.2rem 0 0;
+  font-size: 0.8rem;
+  color: rgba(var(--text), 0.6);
 }
 
+/* CITATIONS */
 .citationList {
   display: grid;
-  gap: 0.55rem;
+  gap: 0.8rem;
 }
 
 .citationCard {
-  margin: 0;
-  border-left: 3px solid rgba(var(--primary), 0.8);
-  border-radius: 0.35rem;
   background: rgb(var(--panel-2));
-  color: rgba(var(--text), 0.78);
-  font-size: 0.8rem;
-  line-height: 1.45;
-  padding: 0.55rem 0.65rem;
+  padding: 0.8rem;
+  border-radius: 0.6rem;
 }
 
 .citationTitle {
   margin: 0;
   font-weight: 700;
-  color: rgb(var(--text));
 }
 
 .citationMeta {
-  margin: 0.2rem 0 0;
-  font-size: 0.76rem;
-  color: rgba(var(--text), 0.62);
+  font-size: 0.85rem;
+  color: rgba(var(--text), 0.6);
 }
 
 .citationExcerpt {
-  margin: 0.3rem 0 0;
-  color: rgba(var(--text), 0.74);
+  margin-top: 0.4rem;
 }
 
+/* FOOTER */
 .footer {
   display: flex;
-  gap: 0.75rem;
-  padding: 1.25rem;
-  border-top: 1px solid rgba(var(--border), 1);
-  background: rgb(var(--surface));
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.buttonPrimary,
-.buttonSecondary,
-.buttonText {
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.9rem;
-  padding: 0.6rem 1.2rem;
-  border-radius: 0.5rem;
-  transition: all 0.2s ease;
+  gap: 1rem;
+  padding: 1.5rem;
 }
 
 .buttonPrimary {
   background: rgb(var(--primary));
   color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
   border: none;
-}
-
-.buttonPrimary:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
 }
 
 .buttonSecondary {
-  background: transparent;
+  border: 1px solid rgb(var(--primary));
   color: rgb(var(--primary));
-  border: 1.5px solid rgb(var(--primary));
-}
-
-.buttonSecondary:hover {
-  background: rgba(var(--primary), 0.08);
-  transform: translateY(-1px);
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
 }
 
 .buttonText {
-  background: transparent;
-  color: rgb(var(--primary));
+  background: none;
   border: none;
-  padding: 0.6rem 0.8rem;
+  color: rgb(var(--primary));
 }
 
-.buttonText:hover {
-  text-decoration: underline;
-}
-
-@media (min-width: 920px) {
+/* RESPONSIVE */
+@media (min-width: 900px) {
   .content {
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1.2fr 1fr;
   }
 }
