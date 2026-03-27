@@ -33,10 +33,12 @@ export default function VocabularyHub() {
 
     if (selectedTerm) {
       window.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
     }
 
     return () => {
       window.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = '';
     };
   }, [selectedTerm]);
 
@@ -76,16 +78,20 @@ export default function VocabularyHub() {
     const usedIds = new Set(selected.map((term) => term.id));
     if (termOfTheDay) usedIds.add(termOfTheDay.id);
 
-    const extras = terms.filter((term) => !usedIds.has(term.id)).slice(0, 3 - selected.length);
+    const extras = terms
+      .filter((term) => !usedIds.has(term.id))
+      .slice(0, 3 - selected.length);
 
     return [...selected, ...extras];
   }, [terms, termOfTheDay]);
 
   const filteredTerms = terms.filter((term) => {
+    const q = search.toLowerCase();
+
     const matchesSearch =
-      term.term.toLowerCase().includes(search.toLowerCase()) ||
-      term.definition.toLowerCase().includes(search.toLowerCase()) ||
-      (term.etymology ?? '').toLowerCase().includes(search.toLowerCase());
+      term.term.toLowerCase().includes(q) ||
+      term.definition.toLowerCase().includes(q) ||
+      (term.etymology ?? '').toLowerCase().includes(q);
 
     const matchesDifficulty =
       difficulty === 'all' || term.difficulty?.toLowerCase() === difficulty;
@@ -144,7 +150,7 @@ export default function VocabularyHub() {
 
                 <h3 className={styles.featuredCardTitle}>{term.term}</h3>
                 <p className={styles.featuredCardText}>
-                  {truncateText(term.definition, 90)}
+                  {truncateText(term.definition, 95)}
                 </p>
               </button>
             ))}
@@ -208,8 +214,17 @@ export default function VocabularyHub() {
 
               {term.tags.length > 0 && (
                 <div className={styles.tags}>
-                  {term.tags.slice(0, 2).map((tag) => (
-                    <span key={tag} className={styles.tag}>
+                  {term.tags.slice(0, 2).map((tag, index) => (
+                    <span
+                      key={tag}
+                      className={`${styles.tag} ${
+                        index % 3 === 0
+                          ? styles.categoryPurple
+                          : index % 3 === 1
+                            ? styles.categoryBlue
+                            : styles.categoryOrange
+                      }`}
+                    >
                       {tag}
                     </span>
                   ))}
@@ -286,8 +301,17 @@ export default function VocabularyHub() {
                 <div className={styles.modalSection}>
                   <h3>Categories</h3>
                   <div className={styles.modalPills}>
-                    {selectedTerm.tags.map((tag) => (
-                      <span key={tag} className={styles.modalTag}>
+                    {selectedTerm.tags.map((tag, index) => (
+                      <span
+                        key={tag}
+                        className={`${styles.modalTag} ${
+                          index % 3 === 0
+                            ? styles.categoryPurple
+                            : index % 3 === 1
+                              ? styles.categoryBlue
+                              : styles.categoryOrange
+                        }`}
+                      >
                         {tag}
                       </span>
                     ))}
@@ -298,11 +322,26 @@ export default function VocabularyHub() {
               {selectedTerm.related_theories.length > 0 && (
                 <div className={styles.modalSection}>
                   <h3>Related Theories</h3>
-                  <div className={styles.modalPills}>
-                    {selectedTerm.related_theories.map((theory) => (
-                      <span key={theory} className={styles.modalTheory}>
-                        {theory}
-                      </span>
+                  <div className={styles.modalTheoryGrid}>
+                    {selectedTerm.related_theories.map((theory, index) => (
+                      <div key={theory} className={styles.modalTheoryCard}>
+                        <span
+                          className={`${styles.theoryDot} ${
+                            index % 3 === 0
+                              ? styles.theoryDotBlue
+                              : index % 3 === 1
+                                ? styles.theoryDotOrange
+                                : styles.theoryDotPurple
+                          }`}
+                        />
+                        <div className={styles.theoryContent}>
+                          <span className={styles.theoryTitle}>{theory}</span>
+                          <span className={styles.theoryDesc}>
+                            Related concept connected to this term.
+                          </span>
+                        </div>
+                        <span className={styles.theoryArrow}>↗</span>
+                      </div>
                     ))}
                   </div>
                 </div>
