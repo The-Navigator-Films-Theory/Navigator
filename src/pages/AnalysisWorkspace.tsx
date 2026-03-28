@@ -44,14 +44,14 @@ const recommendationsByTheory: Record<string, Recommendation[]> = {
       title: 'Essential Reading: "Men, Women, and Chain Saws"',
       score: '90%',
       description:
-        'Carol Clover\'s analysis of gender in horror films provides crucial context for horror theory.',
+        "Carol Clover's analysis of gender in horror films provides crucial context for horror theory.",
       tag: 'book',
     },
     {
       title: 'Comparative Analysis: "Get Out" and Social Horror',
       score: '85%',
       description:
-        'Jordan Peele\'s film demonstrates how horror can address contemporary racial anxieties.',
+        "Jordan Peele's film demonstrates how horror can address contemporary racial anxieties.",
       tag: 'film',
     },
   ],
@@ -81,7 +81,7 @@ const recommendationsByTheory: Record<string, Recommendation[]> = {
       title: 'Essential Reading: "Men, Women, and Chain Saws"',
       score: '90%',
       description:
-        'Carol Clover\'s analysis of gender in horror films provides useful context for horror theory.',
+        "Carol Clover's analysis of gender in horror films provides useful context for horror theory.",
       tag: 'book',
     },
   ],
@@ -127,14 +127,14 @@ const recommendationsByTheory: Record<string, Recommendation[]> = {
       title: 'Essential Reading: "A Certain Tendency of the French Cinema"',
       score: '88%',
       description:
-        'Truffaut\'s essay offers historical grounding for auteur criticism and directorial vision.',
+        "Truffaut's essay offers historical grounding for auteur criticism and directorial vision.",
       tag: 'article',
     },
     {
       title: 'Theory Connection: Recurring Style',
       score: '84%',
       description:
-        'Track recurring themes, visual patterns, and narrative concerns across the director\'s work.',
+        "Track recurring themes, visual patterns, and narrative concerns across the director's work.",
       tag: 'theory',
     },
     {
@@ -150,7 +150,7 @@ const recommendationsByTheory: Record<string, Recommendation[]> = {
       title: 'Recommended Reading: "Postmodernism, or, The Cultural Logic of Late Capitalism"',
       score: '94%',
       description:
-        'Jameson\'s work helps frame parody, pastiche, irony, and fragmentation in your analysis.',
+        "Jameson's work helps frame parody, pastiche, irony, and fragmentation in your analysis.",
       tag: 'book',
     },
     {
@@ -419,17 +419,6 @@ export default function AnalysisWorkspace() {
     loadFilm();
   }, [filmId]);
 
-  useEffect(() => {
-    if (!loading && film && !prompts) {
-      navigate(
-        `/analysis/template-coming-soon?theory=${encodeURIComponent(
-          formatTheoryName(selectedTheory)
-        )}`,
-        { replace: true }
-      );
-    }
-  }, [loading, film, prompts, selectedTheory, navigate]);
-
   const titleLine = useMemo(() => {
     if (!film) return '';
     return `Using ${formatTheoryName(selectedTheory)} • ${formatMeta(film.director, film.year)}`;
@@ -493,7 +482,31 @@ export default function AnalysisWorkspace() {
   }
 
   if (!prompts) {
-    return null;
+    return (
+      <main className={styles.page}>
+        <div className={styles.container}>
+          <div className={styles.comingSoonCard}>
+            <div className={styles.comingSoonIcon} aria-hidden="true">
+              🗎
+            </div>
+
+            <h1 className={styles.comingSoonTitle}>Template Coming Soon</h1>
+
+            <p className={styles.comingSoonText}>
+              Analysis template for {formatTheoryName(selectedTheory)} is being developed.
+            </p>
+
+            <button
+              type="button"
+              className={styles.primaryButton}
+              onClick={() => navigate('/analysis')}
+            >
+              Back to Selection
+            </button>
+          </div>
+        </div>
+      </main>
+    );
   }
 
   return (
