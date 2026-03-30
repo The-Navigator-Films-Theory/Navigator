@@ -3,6 +3,8 @@ import { AppLayout } from '../components/layout';
 import AdminDashboard from '../pages/AdminDashboard';
 import AdminLogin from '../pages/AdminLogin';
 import FlashcardsPage from '../pages/FlashcardsPage';
+import AnalysisToolkit from '../pages/AnalysisToolkit';
+import AnalysisWorkspace from '../pages/AnalysisWorkspace';
 import Home from '../pages/Home';
 import InteractiveLearning from '../pages/InteractiveLearning';
 import QuizPage from '../pages/QuizPage';
@@ -21,6 +23,8 @@ export const router = createBrowserRouter([
       { path: '/flashcards', element: <FlashcardsPage /> },
       { path: '/vocabulary', element: <VocabularyHub /> },
       { path: '/quiz/:theoryId', element: <QuizPage /> },
+      { path: '/analysis', element: <AnalysisToolkit /> },
+      { path: '/analysis/:filmId', element: <AnalysisWorkspace /> },
       { path: '/admin/login', element: <AdminLogin /> },
       { path: '/admin', element: <AdminDashboard /> },
     ],
