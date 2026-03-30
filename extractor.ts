@@ -1,12 +1,16 @@
 import fs from 'fs';
 import { films } from './src/data/raw-data/films';
+import { flashcards, games, quizQuestions } from './src/data/raw-data/quizzes';
 import { theories } from './src/data/raw-data/theories';
 import { vocabularyTerms } from './src/data/raw-data/vocabulary';
 
 const data = {
   theories,
   vocabulary: vocabularyTerms,
-  films
+  films,
+  quizQuestions,
+  games,
+  flashcards
 };
 
 // This writes a combined JSON file
