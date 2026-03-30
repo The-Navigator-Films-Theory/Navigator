@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { AppLayout } from '../components/layout';
 import AdminDashboard from '../pages/AdminDashboard';
 import AdminLogin from '../pages/AdminLogin';
+import FlashcardsPage from '../pages/FlashcardsPage';
 import Home from '../pages/Home';
 import InteractiveLearning from '../pages/InteractiveLearning';
 import QuizPage from '../pages/QuizPage';
@@ -17,6 +18,7 @@ export const router = createBrowserRouter([
       { path: '/theory', element: <TheoryLibrary /> },
       { path: '/theory/:slug', element: <TheoryDetail /> },
       { path: '/learn', element: <InteractiveLearning /> },
+      { path: '/flashcards', element: <FlashcardsPage /> },
       { path: '/vocabulary', element: <VocabularyHub /> },
       { path: '/quiz/:theoryId', element: <QuizPage /> },
       { path: '/admin/login', element: <AdminLogin /> },

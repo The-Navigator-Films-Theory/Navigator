@@ -54,8 +54,8 @@ export default function InteractiveLearning() {
           <p className={`${styles.metaPill} ${styles.metaPillBlue}`}>
             {data.flashcardCount} cards with definitions and explanations
           </p>
-          <Button size="lg" className={styles.cardButton} disabled>
-            Study Cards
+          <Button asChild size="lg" className={styles.cardButton}>
+            <Link to="/flashcards">Study Cards</Link>
           </Button>
         </article>
 

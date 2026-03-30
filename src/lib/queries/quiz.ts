@@ -1,4 +1,3 @@
-import { flashcards, games } from '../../data/raw-data/quizzes';
 import type { QuizQuestion } from '../../types';
 import { supabase } from '../supabase/client';
 
@@ -209,9 +208,18 @@ export async function fetchLearningHubStats(): Promise<{
 }> {
   const quizStats = await fetchQuizStats();
 
+  // Fetch flashcard count from vocabulary_terms table
+  const { count: flashcardCount } = await supabase
+    .from('vocabulary_terms')
+    .select('*', { count: 'exact', head: true })
+    .eq('status', 'published');
+
+  // Games table doesn't exist in current schema
+  const gameCount = 0;
+
   return {
     ...quizStats,
-    flashcardCount: flashcards.length,
-    gameCount: games.length,
+    flashcardCount: flashcardCount ?? 0,
+    gameCount,
   };
 }
