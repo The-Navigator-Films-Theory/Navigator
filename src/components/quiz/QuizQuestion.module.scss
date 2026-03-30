@@ -1,0 +1,162 @@
+.quizQuestion {
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.questionText {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.optionsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-color: white;
+
+  &:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.optionLetter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #d1d5db;
+  margin-right: 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  color: #4b5563;
+}
+
+.optionText {
+  flex-grow: 1;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.optionIcon {
+  margin-left: 1rem;
+}
+
+.correct {
+  @extend .option;
+  border-color: #10b981;
+  background-color: #f0fdfa;
+  color: #059669;
+
+  .optionLetter {
+    border-color: #10b981;
+    background-color: #10b981;
+    color: white;
+  }
+
+  .optionIcon {
+    color: #10b981;
+  }
+}
+
+.incorrect {
+  @extend .option;
+  border-color: #ef4444;
+  background-color: #fef2f2;
+  color: #dc2626;
+
+  .optionLetter {
+    border-color: #ef4444;
+    background-color: #ef4444;
+    color: white;
+  }
+
+  .optionIcon {
+    color: #ef4444;
+  }
+}
+
+.bottomContainer {
+  margin-top: 2.5rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.explanation {
+  padding: 1.5rem;
+  background-color: #f3f4f6;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #374151;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    opacity 0.3s ease-in-out,
+    max-height 0.5s ease-in-out,
+    padding 0.3s ease-in-out,
+    margin 0.3s ease-in-out;
+  margin: 0;
+  padding: 0 1.5rem;
+
+  &.visible {
+    opacity: 1;
+    max-height: 500px; /* Adjust as needed */
+    padding: 1.5rem;
+    margin-top: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  strong {
+    font-weight: 600;
+    color: #1f2937;
+  }
+}
+
+.nextButton {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-primary-dark);
+  }
+
+  &:disabled {
+    background-color: #d1d5db;
+    cursor: not-allowed;
+  }
+}

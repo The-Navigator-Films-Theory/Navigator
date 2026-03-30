@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import styles from './VocabularyHub.module.scss';
 import { fetchVocabularyTerms, type VocabularyTerm } from '../lib/queries/vocabulary';
+import styles from './VocabularyHub.module.scss';
 
 export default function VocabularyHub() {
   const [terms, setTerms] = useState<VocabularyTerm[]>([]);

@@ -1,0 +1,137 @@
+.page {
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  padding: 2rem 1rem;
+  background: linear-gradient(180deg, #f5f7fb 0%, #f2f4f8 100%);
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--color-text-secondary);
+
+  &:hover {
+    color: var(--color-primary);
+  }
+}
+
+.counter {
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.cardShell {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  padding: 1.5rem;
+}
+
+.theoryPill {
+  width: fit-content;
+  margin: 0 auto 1rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: #e9f0ff;
+  color: #2a56d1;
+  font-weight: 700;
+}
+
+.cardFace {
+  width: 100%;
+  min-height: 260px;
+  border-radius: 0.9rem;
+  border: 2px solid #e9edf5;
+  background: #f9fbff;
+  padding: 2rem 1.5rem;
+  display: grid;
+  place-content: center;
+  gap: 1rem;
+  cursor: pointer;
+  text-align: center;
+
+  &:hover {
+    border-color: #cdd8f3;
+  }
+}
+
+.faceLabel {
+  margin: 0;
+  color: #3c4659;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.faceValue {
+  margin: 0;
+  color: #1b2435;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.faceHint {
+  margin: 0;
+  color: #707f94;
+  font-size: 1.1rem;
+}
+
+.controlsRow {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.flipButtonContent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+@media (max-width: 640px) {
+  .headerRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .cardFace {
+    min-height: 220px;
+    padding: 1.5rem 1rem;
+  }
+
+  .faceLabel {
+    font-size: 1.5rem;
+  }
+
+  .faceValue {
+    font-size: 1.6rem;
+  }
+
+  .controlsRow {
+    flex-wrap: wrap;
+  }
+
+  .controlsRow > * {
+    flex: 1 1 30%;
+  }
+}

@@ -32,12 +32,17 @@ export interface Film {
 }
 
 // Quiz types
+export interface QuizQuestionOption {
+  id: string;
+  text: string;
+}
+
 export interface QuizQuestion {
   id: string;
   theoryId: string;
   question: string;
-  options: string[];
-  correctAnswer: number;
+  options: QuizQuestionOption[];
+  correctAnswer: string; // This should be the ID of the correct QuizQuestionOption
   explanation: string;
 }
 
