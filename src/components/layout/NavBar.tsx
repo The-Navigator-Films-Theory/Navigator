@@ -8,8 +8,6 @@ const links = [
   { to: '/vocabulary', label: 'Vocabulary' },
   { to: '/learn', label: 'Interactive Learning' },
   { to: '/analysis', label: 'Analysis Toolkit' },
-  { to: '/community', label: 'Community' },
-  { to: '/pricing', label: 'Pricing' },
 ];
 
 export default function NavBar() {
@@ -20,6 +18,7 @@ export default function NavBar() {
           <p className={styles.brand}>The Film & Media Theory Navigator</p>
           <p className={styles.tagline}>Learn . Analyze . Discuss</p>
         </div>
+
         <nav className={styles.nav}>
           {links.map((link) => (
             <NavLink
@@ -33,8 +32,8 @@ export default function NavBar() {
             </NavLink>
           ))}
         </nav>
+
         <div className={styles.actions}>
-          <button type="button" className={styles.feedbackButton}>Beta Feedback</button>
           <NavLink to="/admin/login" className={styles.loginButton}>
             <User size={16} />
             <span>Login</span>

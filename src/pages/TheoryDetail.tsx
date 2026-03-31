@@ -6,6 +6,7 @@ import styles from './TheoryDetail.module.scss';
 
 export default function TheoryDetail() {
   const { slug = '' } = useParams();
+
   const { data, isLoading, error } = useQuery({
     queryKey: ['theory', slug],
     queryFn: () => fetchTheoryBySlug(slug),
@@ -21,37 +22,53 @@ export default function TheoryDetail() {
       <Link to="/theory" className={styles.backLink}>
         Back to library
       </Link>
-      <h1 className={styles.title}>{data.title}</h1>
-      <p className={styles.caption}>{data.overview}</p>
-      <p className={styles.description}>{data.description}</p>
-      {data.key_thinkers && data.key_thinkers.length > 0 && (
-        <section>
-          <h2 className={styles.historyTitle}>Key Thinkers</h2>
-          <div className={styles.pills}>
-            {data.key_thinkers.map((thinker) => (
-              <span key={thinker} className={styles.pill}>
-                {thinker}
-              </span>
-            ))}
-          </div>
-        </section>
-      )}
-      {data.history && (
-        <section>
-          <h2 className={styles.historyTitle}>Historical Context</h2>
-          <p className={styles.historyText}>{data.history}</p>
-        </section>
-      )}
-      {data.key_points && data.key_points.length > 0 && (
-        <section>
-          <h2 className={styles.historyTitle}>Key Points</h2>
-          <ul className={styles.points}>
-            {data.key_points.map((point) => (
-              <li key={point}>{point}</li>
-            ))}
-          </ul>
-        </section>
-      )}
+
+      <header className={styles.hero}>
+        <h1 className={styles.title}>{data.title}</h1>
+        <p className={styles.caption}>{data.overview}</p>
+      </header>
+
+      <div className={styles.layout}>
+        <div className={styles.mainColumn}>
+          <section className={styles.sectionCard}>
+            <h2 className={styles.sectionTitle}>Overview</h2>
+            <p className={styles.description}>{data.description}</p>
+          </section>
+
+          {data.history && (
+            <section className={styles.sectionCard}>
+              <h2 className={styles.sectionTitle}>Historical Context</h2>
+              <p className={styles.historyText}>{data.history}</p>
+            </section>
+          )}
+
+          {data.key_points && data.key_points.length > 0 && (
+            <section className={styles.sectionCard}>
+              <h2 className={styles.sectionTitle}>Key Points</h2>
+              <ul className={styles.points}>
+                {data.key_points.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            </section>
+          )}
+        </div>
+
+        <aside className={styles.sideColumn}>
+          {data.key_thinkers && data.key_thinkers.length > 0 && (
+            <section className={styles.sectionCard}>
+              <h2 className={styles.sectionTitle}>Key Thinkers</h2>
+              <div className={styles.pills}>
+                {data.key_thinkers.map((thinker) => (
+                  <span key={thinker} className={styles.pill}>
+                    {thinker}
+                  </span>
+                ))}
+              </div>
+            </section>
+          )}
+        </aside>
+      </div>
     </article>
   );
 }

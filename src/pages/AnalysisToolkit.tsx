@@ -88,7 +88,8 @@ export default function AnalysisToolkit() {
         <header className={styles.hero}>
           <h1 className={styles.title}>Film Analysis Toolkit</h1>
           <p className={styles.subtitle}>
-            Apply theoretical frameworks to analyze films with guided templates and reading recommendations.
+            Apply theoretical frameworks to analyze films with guided templates and reading
+            recommendations.
           </p>
           <p className={styles.subtitleSecondary}>
             Choose a film and theoretical approach to begin your analysis.
@@ -142,7 +143,7 @@ export default function AnalysisToolkit() {
 
                   {theories.length > 0 && (
                     <>
-                      <p className={styles.sectionLabel}>Applicable Theories:</p>
+                      <p className={styles.sectionLabel}>Applicable Theories</p>
 
                       <div className={styles.theoryList}>
                         {theories.map((theory, index) => (

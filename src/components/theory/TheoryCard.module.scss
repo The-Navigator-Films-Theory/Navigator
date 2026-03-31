@@ -1,13 +1,13 @@
 .card {
   display: grid;
-  gap: 0.75rem;
-  border: 1px solid rgba(var(--border), 1);
+  gap: 0.85rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
   border-radius: 1rem;
-  background: rgb(var(--surface));
+  background: #f3f4f6;
   box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.04),
-    0 6px 16px rgba(0, 0, 0, 0.06);
-  padding: 1.2rem 1.2rem 0.85rem;
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 8px 20px rgba(15, 23, 42, 0.08);
+  padding: 1.2rem 1.2rem 1rem;
   min-height: 19.5rem;
   cursor: pointer;
   transition:
@@ -17,20 +17,19 @@
 }
 
 .card:hover {
-  border-color: rgb(var(--primary));
+  border-color: rgba(59, 130, 246, 0.22);
   box-shadow:
-    0 2px 6px rgba(0, 0, 0, 0.06),
-    0 12px 28px rgba(0, 0, 0, 0.10),
-    0 24px 48px rgba(0, 0, 0, 0.08);
-  transform: translateY(-4px) scale(1.01);
+    0 4px 10px rgba(15, 23, 42, 0.06),
+    0 14px 28px rgba(15, 23, 42, 0.12);
+  transform: translateY(-3px);
 }
 
 .card:active {
-  transform: scale(0.98);
+  transform: scale(0.99);
 }
 
 .card:focus-visible {
-  outline: 2px solid rgb(var(--primary));
+  outline: 2px solid rgba(59, 130, 246, 0.45);
   outline-offset: 3px;
 }
 
@@ -41,49 +40,68 @@
 }
 
 .dot {
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 0.95rem;
+  height: 0.95rem;
   border-radius: 999px;
 }
 
-.dotBlue { background: #3b82f6; }
-.dotAmber { background: #f59e0b; }
-.dotViolet { background: #8b5cf6; }
-.dotGreen { background: #10b981; }
-.dotRed { background: #ef4444; }
-.dotSky { background: #0ea5e9; }
+.dotBlue {
+  background: #60a5fa;
+}
+
+.dotAmber {
+  background: #fbbf24;
+}
+
+.dotViolet {
+  background: #a78bfa;
+}
+
+.dotGreen {
+  background: #34d399;
+}
+
+.dotRed {
+  background: #f87171;
+}
+
+.dotSky {
+  background: #38bdf8;
+}
 
 .title {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 1.15rem;
   font-weight: 800;
+  line-height: 1.2;
   letter-spacing: -0.02em;
+  color: #0f172a;
   transition: color 150ms ease;
 }
 
 .card:hover .title {
-  color: rgb(var(--primary));
+  color: #1d4ed8;
 }
 
 .category {
-  margin: -0.2rem 0 0;
+  margin: -0.1rem 0 0;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(var(--text), 0.54);
+  color: #475569;
 }
 
 .overview {
   margin: 0;
   font-size: 0.97rem;
-  line-height: 1.55;
-  color: rgba(var(--text), 0.8);
+  line-height: 1.6;
+  color: #334155;
 }
 
 .metaList {
   display: grid;
-  gap: 0.45rem;
+  gap: 0.5rem;
 }
 
 .metaItem {
@@ -92,7 +110,8 @@
   gap: 0.4rem;
   margin: 0;
   font-size: 0.82rem;
-  color: rgba(var(--text), 0.66);
+  line-height: 1.45;
+  color: #475569;
 }
 
 .metaIcon {
@@ -102,19 +121,17 @@
 
 .learnMore {
   margin-top: auto;
-  border-top: 1px solid rgba(var(--border), 0.9);
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
   background: transparent;
-  color: rgba(var(--text), 0.72);
+  color: #0f172a;
   font-size: 0.86rem;
   font-weight: 700;
-  padding: 0.75rem 0 0.2rem;
+  padding: 0.85rem 0 0.1rem;
   text-align: center;
   pointer-events: none;
-  transition: background 150ms ease, color 150ms ease;
+  transition: color 150ms ease;
 }
 
 .card:hover .learnMore {
-  background: rgba(var(--primary), 0.10);
-  color: rgb(var(--primary));
-  border-radius: 0 0 1rem 1rem;
+  color: #1d4ed8;
 }
