@@ -67,9 +67,43 @@
 
 .actions {
   display: flex;
-  justify-content: end;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.feedbackButton {
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: rgba(var(--color-primary-rgb), 0.1);
+  }
+}
+
+.loginButton {
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: var(--color-primary-hover);
+  }
 }
 
 .feedbackButton {

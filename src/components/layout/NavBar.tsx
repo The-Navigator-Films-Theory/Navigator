@@ -1,13 +1,15 @@
 import { NavLink } from 'react-router-dom';
+import { User } from 'lucide-react';
 import styles from './NavBar.module.scss';
 
 const links = [
   { to: '/', label: 'Home' },
   { to: '/theory', label: 'Theory Library' },
-  { to: '/vocabulary', label: 'Vocabulary Hub' },
+  { to: '/vocabulary', label: 'Vocabulary' },
   { to: '/learn', label: 'Interactive Learning' },
   { to: '/analysis', label: 'Analysis Toolkit' },
-  { to: '/admin', label: 'Community' },
+  { to: '/community', label: 'Community' },
+  { to: '/pricing', label: 'Pricing' },
 ];
 
 export default function NavBar() {
@@ -34,7 +36,8 @@ export default function NavBar() {
         <div className={styles.actions}>
           <button type="button" className={styles.feedbackButton}>Beta Feedback</button>
           <NavLink to="/admin/login" className={styles.loginButton}>
-            Login
+            <User size={16} />
+            <span>Login</span>
           </NavLink>
         </div>
       </div>

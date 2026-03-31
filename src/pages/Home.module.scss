@@ -1,13 +1,63 @@
+.container {
+  padding: 4rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .hero {
-  border: 1px solid rgba(var(--border), 0.35);
-  border-radius: 1rem;
-  background:
-    linear-gradient(140deg, rgba(var(--primary), 0.12) 0%, transparent 42%),
-    linear-gradient(180deg, rgb(var(--surface-elevated)) 0%, rgb(var(--surface)) 100%);
-  padding: 2rem;
-  box-shadow:
-    0 20px 55px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(var(--primary), 0.12) inset;
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #fff;
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.ctaPrimary,
+.ctaSecondary {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.ctaPrimary {
+  background-color: var(--color-primary);
+  color: white;
+  &:hover {
+    background-color: var(--color-primary-hover);
+  }
+}
+
+.ctaSecondary {
+  background-color: transparent;
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-text-primary);
+  }
 }
 
 .kicker {

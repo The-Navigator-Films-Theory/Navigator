@@ -1,4 +1,4 @@
-@use './styles/variables';
+@import './styles/variables';
 
 * {
   box-sizing: border-box;
@@ -13,13 +13,22 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: rgb(var(--bg-1));
-  background:
-    radial-gradient(900px circle at -10% -25%, rgba(var(--primary), 0.09) 0%, transparent 58%),
-    radial-gradient(720px circle at 115% 0%, rgba(var(--accent), 0.07) 0%, transparent 52%),
-    linear-gradient(180deg, rgb(var(--bg-1)) 0%, rgb(var(--bg-2)) 100%);
-  color: rgb(var(--text));
-  font-family: 'Plus Jakarta Sans', 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
 }
 
 #root {
