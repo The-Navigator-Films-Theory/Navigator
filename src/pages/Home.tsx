@@ -1,19 +1,26 @@
 import { Link } from 'react-router-dom';
+import StatsGrid from '../components/home/StatsGrid';
 import styles from './Home.module.scss';
 
 export default function Home() {
   return (
-    <section className={styles.hero}>
-      <p className={styles.kicker}>Film Theory Navigator</p>
-      <h1 className={styles.title}>
-        Explore <span className={styles.titleAccent}>Film Theory</span> with clarity.
-      </h1>
-      <p className={styles.body}>
-        Browse key film theories, compare thinkers, and dive into examples through a searchable, structured library.
-      </p>
-      <Link to="/theory" className={styles.cta}>
-        Open Theory Library
-      </Link>
-    </section>
+    <div className={styles.container}>
+      <section className={styles.hero}>
+        <h1 className={styles.title}>Navigate the World of Film Theory</h1>
+        <p className={styles.subtitle}>
+          Your comprehensive guide to understanding film and media. Explore theories, test your
+          knowledge, and contribute to a growing community of scholars and enthusiasts.
+        </p>
+        <div className={styles.actions}>
+          <Link to="/theory" className={styles.ctaPrimary}>
+            Start Exploring
+          </Link>
+          <Link to="/learn" className={styles.ctaSecondary}>
+            Take a Quiz
+          </Link>
+        </div>
+      </section>
+      <StatsGrid />
+    </div>
   );
 }

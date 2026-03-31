@@ -1,51 +1,52 @@
 .page {
   display: grid;
-  gap: 1rem;
+  gap: var(--space-lg);
 }
 
 .title {
   margin: 0;
   text-align: center;
-  font-size: clamp(2rem, 4.2vw, 3rem);
+  font-size: var(--font-size-5xl);
   letter-spacing: -0.03em;
   font-weight: 800;
+  color: var(--color-text-primary);
 }
 
 .subtitle {
   margin: 0 auto;
   max-width: 64ch;
   text-align: center;
-  color: rgba(var(--text), 0.72);
+  color: var(--color-text-secondary);
   line-height: 1.6;
 }
 
 .statsRow {
-  margin-top: 0.35rem;
+  margin-top: var(--space-sm);
   display: grid;
-  gap: 0.75rem;
+  gap: var(--space-md);
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
 .statCard {
-  border: 1px solid rgba(var(--border), 1);
-  border-radius: 0.95rem;
-  background: rgb(var(--surface));
-  padding: 0.9rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  background: var(--color-surface);
+  padding: var(--space-md) var(--space-lg);
   text-align: center;
-  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .statValue {
   margin: 0;
-  color: rgb(var(--primary));
-  font-size: 1.35rem;
+  color: var(--color-primary);
+  font-size: var(--font-size-3xl);
   font-weight: 800;
 }
 
 .statLabel {
-  margin: 0.2rem 0 0;
-  color: rgba(var(--text), 0.62);
-  font-size: 0.8rem;
+  margin: var(--space-xs) 0 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;

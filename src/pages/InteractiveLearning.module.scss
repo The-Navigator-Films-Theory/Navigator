@@ -237,11 +237,41 @@
   border-top: 1px solid rgba(var(--border), 0.6);
 }
 
-.progressTitle {
+.page {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.title {
+  margin: 0;
   text-align: center;
-  font-size: 2.2rem;
+  font-size: var(--font-size-5xl);
+  letter-spacing: -0.03em;
   font-weight: 800;
-  margin-bottom: 2rem;
+  color: var(--color-text-primary);
+}
+
+.subtitle {
+  margin: 0 auto;
+  max-width: 64ch;
+  text-align: center;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.hubGrid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-top: var(--space-lg);
+}
+
+.progressTitle {
+  margin-top: var(--space-xxl);
+  text-align: center;
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
 }
 
 .progressGrid {

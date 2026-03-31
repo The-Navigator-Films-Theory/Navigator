@@ -1,45 +1,21 @@
 :root {
-  /* Color System */
-  --color-primary-lightest: #f0f5ff;
-  --color-primary-light: #d6e4ff;
-  --color-primary: #2463eb;
-  --color-primary-dark: #1e50c0;
-  --color-primary-darker: #173d94;
-  --color-primary-rgb: 36, 99, 235;
+  /* Fonts */
+  --font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-family-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-family-mono: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
 
-  --color-secondary: #f59e0b;
-
-  --color-success: #10b981;
-  --color-success-dark: #059669;
-  --color-warning: #f59e0b;
-  --color-warning-dark: #d97706;
-  --color-error: #ef4444;
-  --color-error-dark: #dc2626;
-  --color-info: #3b82f6;
-
-  /* Grayscale */
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f3f4f6;
-  --color-gray-200: #e5e7eb;
-  --color-gray-300: #d1d5db;
-  --color-gray-400: #9ca3af;
-  --color-gray-500: #6b7280;
-  --color-gray-600: #4b5563;
-  --color-gray-700: #374151;
-  --color-gray-800: #1f2937;
-  --color-gray-900: #111827;
-
-  /* Text */
-  --color-text-primary: var(--color-gray-800);
-  --color-text-secondary: var(--color-gray-600);
-  --color-text-muted: var(--color-gray-400);
-
-  /* Background */
-  --color-bg-primary: #f9fafb;
-  --color-bg-secondary: white;
-
-  /* Borders */
-  --color-border: var(--color-gray-200);
+  /* Font Sizes */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -47,25 +23,26 @@
   --space-md: 1rem;
   --space-lg: 1.5rem;
   --space-xl: 2rem;
-  --space-2xl: 2.5rem;
+  --space-xxl: 4rem;
 
-  /* Elevation / Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  /* Border Radius */
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 1rem;
 
-  /* Compatibility aliases for old variables */
-  --bg-1: 244 247 252; /* approx gray-100 */
-  --panel: 255 255 255; /* white */
-  --border: 214 223 237; /* approx gray-200 */
-  --text: 17 24 39; /* gray-900 */
-  --muted: 107 114 128; /* gray-500 */
-  --primary: 36 99 235; /* primary */
-  --primary-hover: 29 78 216; /* primary-dark */
-  --accent: 245 158 11; /* warning */
+  /* Colors */
+  --color-primary: #4a72ff;
+  --color-primary-hover: #6c8cff;
+  --color-primary-rgb: 74, 114, 255;
+  --color-accent: #f5a623;
+  --color-accent-rgb: 245, 166, 35;
+
+  --color-bg: #0d1117;
+  --color-surface: #161b22;
+  --color-surface-elevated: #1f242c;
+
+  --color-text-primary: #e6edf3;
+  --color-text-secondary: #8b949e;
+  --color-border: #30363d;
 }
-
-/* Remove old Sass variables if they are no longer needed */
-/* It's better to use CSS variables directly in your .scss files */
 
