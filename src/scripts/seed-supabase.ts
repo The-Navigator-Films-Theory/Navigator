@@ -6,6 +6,7 @@ type RawTheory = {
   id: string;
   name?: string;
   title?: string;
+  slug?: string;
 };
 
 type RawQuizOption = {
@@ -64,7 +65,6 @@ type RawFilm = {
 
 dotenv.config({ path: '.env' });
 
-
 // You can find these in your Supabase project settings -> API
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
 const SUPABASE_SERVICE_KEY =
@@ -79,16 +79,6 @@ if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) {
 // We use the service_role key for admin-level access required for a seeding script.
 const supabaseAdmin = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
 
-// Helper function to create URL-safe slugs
-function createSlug(text: string): string {
-  return text
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-');
-}
-
 async function seedDatabase() {
   console.log('Starting database seed...');
 
@@ -101,13 +91,16 @@ async function seedDatabase() {
   } else {
     const theoriesPayload = theories.map((theory: any) => ({
       title: theory.title ?? theory.name ?? '',
-      slug: createSlug(theory.title ?? theory.name ?? theory.id),
+      slug: theory.slug ?? theory.id,
       category: theory.category ?? null,
-      overview: theory.summary ?? null,
-      history: theory.description ?? null,
-      key_points: theory.keyPoints ?? [],
-      key_thinkers: theory.keyThinkers ?? [],
-      representative_films: theory.representativeFilms ?? [],
+      overview: theory.summary ?? theory.overview ?? null,
+      history: theory.description ?? theory.history ?? null,
+      description: theory.description ?? null,
+      color: theory.color ?? null,
+      key_points: theory.keyPoints ?? theory.key_points ?? [],
+      key_thinkers: theory.keyThinkers ?? theory.key_thinkers ?? [],
+      representative_films:
+        theory.representativeFilms ?? theory.representative_films ?? [],
       citations: theory.citations ?? [],
       status: 'published',
     }));
@@ -165,16 +158,19 @@ async function seedDatabase() {
       director: film.director ?? null,
       year: film.year ?? null,
       synopsis: film.description ?? null,
+      film_id: film.id ?? null,
+      poster_url: film.poster ?? null,
+      relevant_theories: film.relevantTheories ?? [],
     }));
 
     const { error: filmsError } = await supabaseAdmin
       .from('films')
-      .insert(filmsPayload);
+      .upsert(filmsPayload, { onConflict: 'film_id' });
 
     if (filmsError) {
       console.error('Error seeding films:', filmsError.message);
     } else {
-      console.log(`Inserted ${filmsPayload.length} films.`);
+      console.log(`Inserted/updated ${filmsPayload.length} films.`);
     }
   }
 
@@ -190,7 +186,7 @@ async function seedDatabase() {
   }
 
   const theoryTitleById = new Map<string, string>(
-    theories.map(t => [t.id, t.title ?? t.name ?? t.id])
+    theories.map((t) => [t.id, t.title ?? t.name ?? t.id])
   );
 
   const questionsByTheory = new Map<string, RawQuizQuestion[]>();
@@ -204,7 +200,6 @@ async function seedDatabase() {
     const theoryLabel = theoryTitleById.get(theoryId) ?? theoryId;
     const quizTitle = `${theoryLabel} Quiz`;
 
-    // Reuse existing quiz by topic if present so the script can be rerun safely.
     let quizId: string | null = null;
     const { data: existingQuiz, error: existingQuizError } = await supabaseAdmin
       .from('quizzes')
@@ -214,7 +209,10 @@ async function seedDatabase() {
       .maybeSingle();
 
     if (existingQuizError) {
-      console.error(`Error checking existing quiz for topic "${theoryId}":`, existingQuizError.message);
+      console.error(
+        `Error checking existing quiz for topic "${theoryId}":`,
+        existingQuizError.message
+      );
       continue;
     }
 
@@ -260,14 +258,16 @@ async function seedDatabase() {
       continue;
     }
 
-    // Replace quiz questions for this quiz to keep data in sync on reruns.
     const { error: deleteQuestionsError } = await supabaseAdmin
       .from('quiz_questions')
       .delete()
       .eq('quiz_id', quizId);
 
     if (deleteQuestionsError) {
-      console.error(`Error clearing old questions for quiz "${quizTitle}":`, deleteQuestionsError.message);
+      console.error(
+        `Error clearing old questions for quiz "${quizTitle}":`,
+        deleteQuestionsError.message
+      );
       continue;
     }
 
@@ -276,7 +276,7 @@ async function seedDatabase() {
       const optionB = q.options[1]?.text ?? '';
       const optionC = q.options[2]?.text ?? '';
       const optionD = q.options[3]?.text ?? '';
-      const correctIndex = q.options.findIndex(option => option.id === q.correctAnswer);
+      const correctIndex = q.options.findIndex((option) => option.id === q.correctAnswer);
       const correctOption = ['A', 'B', 'C', 'D'][correctIndex] ?? 'A';
 
       return {
@@ -297,12 +297,11 @@ async function seedDatabase() {
         .insert(questionsToInsert);
 
       if (questionsError) {
-        // Fallback for older schema variants that use `options` + `correct_answer`.
         if (questionsError.message.includes('correct_option')) {
           const legacyQuestionsToInsert = questionsForTheory.map((q: RawQuizQuestion) => ({
             quiz_id: quizId,
             question_text: q.question,
-            options: q.options.map(option => option.text),
+            options: q.options.map((option) => option.text),
             correct_answer: q.correctAnswer,
             explanation: q.explanation ?? null,
           }));
@@ -333,7 +332,7 @@ async function seedDatabase() {
     }
   }
 
-  // 4. Seed Flashcards into vocabulary_terms (used by the web app flashcard page)
+  // 4. Seed Flashcards into vocabulary_terms
   console.log('\nSeeding flashcards...');
   const flashcards = ((rawData as { flashcards?: RawFlashcard[] }).flashcards ?? []) as RawFlashcard[];
 
@@ -369,7 +368,10 @@ async function seedDatabase() {
         .upsert(flashcardsPayload, { onConflict: 'term' });
 
       if (flashcardsError) {
-        console.error('Error seeding flashcards into vocabulary_terms:', flashcardsError.message);
+        console.error(
+          'Error seeding flashcards into vocabulary_terms:',
+          flashcardsError.message
+        );
       } else {
         console.log(`Inserted/updated ${flashcardsPayload.length} flashcards.`);
       }
@@ -412,14 +414,11 @@ async function seedDatabase() {
       continue;
     }
     console.log(`Inserted game: ${game.title} (ID: ${game.id})`);
-
-    // Note: This script doesn't handle the game_theories junction table yet
-    // as we don't have theory UUIDs from the database. This can be added later.
   }
 
   console.log('\nDatabase seed complete!');
 }
 
-seedDatabase().catch(error => {
+seedDatabase().catch((error) => {
   console.error('An unexpected error occurred during seeding:', error);
 });
