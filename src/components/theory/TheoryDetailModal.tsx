@@ -59,43 +59,47 @@ export default function TheoryDetailModal({ item, onClose }: TheoryDetailModalPr
         <div className={styles.content}>
 
           {/* LEFT SIDE */}
-          <section className={styles.primaryCol}>
-            
-            <div className={styles.sectionHeading}>
-              <BookOpen size={20} strokeWidth={2.2} />
-              <h3 className={styles.sectionTitle}>Overview</h3>
-            </div>
-            <p className={styles.paragraph}>
-              {item.description ?? 'No overview yet.'}
-            </p>
+          <div className={styles.primaryCol}>
 
-            <div className={styles.sectionHeading}>
-              <CalendarDays size={20} strokeWidth={2.2} />
-              <h3 className={styles.sectionTitle}>Historical Context</h3>
-            </div>
-            <p className={styles.paragraph}>
-              {item.history ?? 'Historical context not available yet.'}
-            </p>
+            <section className={styles.sectionCard}>
+              <div className={styles.sectionHeading}>
+                <BookOpen size={20} />
+                <h3 className={styles.sectionTitle}>Overview</h3>
+              </div>
+              <p className={styles.paragraph}>
+                {item.description ?? 'No overview yet.'}
+              </p>
+            </section>
+
+            <section className={styles.sectionCard}>
+              <div className={styles.sectionHeading}>
+                <CalendarDays size={20} />
+                <h3 className={styles.sectionTitle}>Historical Context</h3>
+              </div>
+              <p className={styles.paragraph}>
+                {item.history ?? 'Historical context not available yet.'}
+              </p>
+            </section>
 
             {(item.key_points ?? []).length > 0 && (
-              <>
+              <section className={styles.sectionCard}>
                 <h3 className={styles.sectionTitle}>Key Points</h3>
                 <ul className={styles.pointList}>
                   {(item.key_points ?? []).map((point) => (
                     <li key={point}>{point}</li>
                   ))}
                 </ul>
-              </>
+              </section>
             )}
-          </section>
+          </div>
 
           {/* RIGHT SIDE */}
           <aside className={styles.sideCol}>
 
             {(item.key_thinkers ?? []).length > 0 && (
-              <section>
+              <section className={styles.sectionCard}>
                 <div className={styles.sectionHeading}>
-                  <Users size={20} strokeWidth={2.2} />
+                  <Users size={20} />
                   <h3 className={styles.sectionTitle}>Key Thinkers</h3>
                 </div>
 
@@ -116,9 +120,9 @@ export default function TheoryDetailModal({ item, onClose }: TheoryDetailModalPr
             )}
 
             {filmItems.length > 0 && (
-              <section>
+              <section className={styles.sectionCard}>
                 <div className={styles.sectionHeading}>
-                  <Film size={20} strokeWidth={2.2} />
+                  <Film size={20} />
                   <h3 className={styles.sectionTitle}>Representative Films</h3>
                 </div>
 
@@ -141,9 +145,9 @@ export default function TheoryDetailModal({ item, onClose }: TheoryDetailModalPr
             )}
 
             {citationItems.length > 0 && (
-              <section>
+              <section className={styles.sectionCard}>
                 <div className={styles.sectionHeading}>
-                  <Quote size={20} strokeWidth={2.2} />
+                  <Quote size={20} />
                   <h3 className={styles.sectionTitle}>Key Citations</h3>
                 </div>
 
