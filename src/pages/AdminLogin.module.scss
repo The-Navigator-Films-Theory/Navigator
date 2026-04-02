@@ -65,6 +65,30 @@
   margin: 0;
 }
 
+.successText {
+  color: #22c55e;
+  text-align: center;
+  margin: 0;
+}
+
+.helperText {
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
 .loginButton {
   width: 100%;
+}
+
+.linkButton {
+  border: none;
+  background: transparent;
+  color: var(--color-primary);
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.92rem;
+  padding: 0;
+  justify-self: center;
 }

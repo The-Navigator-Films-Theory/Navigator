@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { AdminRoute } from '../components/common';
 import { AppLayout } from '../components/layout';
 import AdminDashboard from '../pages/AdminDashboard';
 import AdminLogin from '../pages/AdminLogin';
@@ -26,7 +27,14 @@ export const router = createBrowserRouter([
       { path: '/analysis', element: <AnalysisToolkit /> },
       { path: '/analysis/:filmId', element: <AnalysisWorkspace /> },
       { path: '/admin/login', element: <AdminLogin /> },
-      { path: '/admin', element: <AdminDashboard /> },
+      {
+        path: '/admin',
+        element: (
+          <AdminRoute>
+            <AdminDashboard />
+          </AdminRoute>
+        ),
+      },
     ],
   },
 ]);
