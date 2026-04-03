@@ -11,7 +11,7 @@ const stats = [
 
 export default function StatsGrid() {
   return (
-    <div className={styles.grid}>
+    <section className={styles.grid}>
       {stats.map((stat) => (
         <div className={styles.statCard} key={stat.label}>
           <div className={styles.iconWrapper}>
@@ -21,6 +21,6 @@ export default function StatsGrid() {
           <p className={styles.label}>{stat.label}</p>
         </div>
       ))}
-    </div>
+    </section>
   );
 }
