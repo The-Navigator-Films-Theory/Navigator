@@ -30,7 +30,7 @@
   max-width: 64ch;
   font-size: 0.98rem;
   line-height: 1.7;
-  color: rgba(var(--text), 0.75);
+  color: rgba(226, 232, 240, 0.78);
 }
 
 /* ================= MAIN CARDS ================= */
@@ -42,12 +42,8 @@
 }
 
 .card {
-  background: linear-gradient(
-    180deg,
-    rgba(var(--surface), 1),
-    rgba(var(--surface), 0.94)
-  );
-  border: 1px solid rgba(var(--border), 0.9);
+  background: rgba(15, 23, 42, 0.58);
+  border: 1px solid rgba(148, 163, 184, 0.16);
   border-radius: 1.1rem;
   padding: 1.35rem;
 
@@ -56,8 +52,10 @@
   gap: 0.95rem;
 
   box-shadow:
-    0 8px 22px rgba(15, 23, 42, 0.08),
+    0 8px 22px rgba(15, 23, 42, 0.14),
     inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+  backdrop-filter: blur(6px);
 
   transition:
     transform 180ms ease,
@@ -70,7 +68,7 @@
   transform: translateY(-4px);
   border-color: rgba(var(--primary), 0.38);
   box-shadow:
-    0 14px 30px rgba(15, 23, 42, 0.12),
+    0 14px 30px rgba(15, 23, 42, 0.18),
     0 0 18px rgba(var(--primary), 0.08);
 }
 
@@ -85,7 +83,7 @@
   align-items: center;
   justify-content: center;
 
-  background: rgba(var(--primary), 0.1);
+  background: rgba(var(--primary), 0.12);
   color: rgb(var(--primary));
 }
 
@@ -96,13 +94,13 @@
   font-size: 1.22rem;
   line-height: 1.25;
   font-weight: 800;
-  color: rgb(var(--text));
+  color: #f8fafc;
 }
 
 .cardBody {
   margin: 0;
   font-size: 0.95rem;
-  color: rgba(var(--text), 0.74);
+  color: rgba(226, 232, 240, 0.8);
   line-height: 1.65;
   flex-grow: 1;
 }
@@ -121,18 +119,18 @@
 }
 
 .metaPillPurple {
-  background: rgba(124, 58, 237, 0.12);
-  color: #7c3aed;
+  background: rgba(124, 58, 237, 0.16);
+  color: #c4b5fd;
 }
 
 .metaPillBlue {
-  background: rgba(37, 99, 235, 0.1);
-  color: #2563eb;
+  background: rgba(37, 99, 235, 0.14);
+  color: #93c5fd;
 }
 
 .metaPillGreen {
-  background: rgba(22, 163, 74, 0.12);
-  color: #15803d;
+  background: rgba(22, 163, 74, 0.16);
+  color: #86efac;
 }
 
 /* BUTTON */
@@ -155,7 +153,7 @@
   text-align: center;
   font-size: clamp(1.5rem, 2vw, 1.9rem);
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: #f8fafc;
 }
 
 .progressGrid {
@@ -165,16 +163,15 @@
 }
 
 .progressCard {
-  background: linear-gradient(
-    180deg,
-    rgba(var(--surface), 1),
-    rgba(var(--surface), 0.95)
-  );
-  border: 1px solid rgba(var(--border), 0.75);
+  background: rgba(15, 23, 42, 0.58);
+  border: 1px solid rgba(148, 163, 184, 0.16);
   border-radius: 1rem;
   padding: 1.25rem;
   text-align: center;
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+  box-shadow:
+    0 10px 24px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(6px);
   transition:
     transform 150ms ease,
     border-color 150ms ease,
@@ -184,7 +181,7 @@
 .progressCard:hover {
   transform: translateY(-2px);
   border-color: rgba(var(--primary), 0.24);
-  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.16);
 }
 
 /* ICON */
@@ -200,23 +197,23 @@
 }
 
 .progressIconPurple {
-  background: rgba(124, 58, 237, 0.12);
-  color: #7c3aed;
+  background: rgba(124, 58, 237, 0.16);
+  color: #c4b5fd;
 }
 
 .progressIconBlue {
-  background: rgba(37, 99, 235, 0.1);
-  color: #2563eb;
+  background: rgba(37, 99, 235, 0.14);
+  color: #93c5fd;
 }
 
 .progressIconGreen {
-  background: rgba(22, 163, 74, 0.12);
-  color: #15803d;
+  background: rgba(22, 163, 74, 0.16);
+  color: #86efac;
 }
 
 .progressIconYellow {
-  background: rgba(245, 158, 11, 0.14);
-  color: #b45309;
+  background: rgba(245, 158, 11, 0.16);
+  color: #fcd34d;
 }
 
 /* TEXT */
@@ -224,7 +221,7 @@
 .progressCardTitle {
   margin: 0;
   font-size: 0.92rem;
-  color: rgba(var(--text), 0.7);
+  color: rgba(226, 232, 240, 0.72);
 }
 
 .progressCardValue {
@@ -232,14 +229,14 @@
   font-size: 1.75rem;
   line-height: 1;
   font-weight: 800;
-  color: rgb(var(--text));
+  color: #f8fafc;
 }
 
 .progressCardSub {
   margin: 0;
   font-size: 0.8rem;
   line-height: 1.5;
-  color: rgba(var(--text), 0.56);
+  color: rgba(226, 232, 240, 0.6);
 }
 
 /* ================= RESPONSIVE ================= */
