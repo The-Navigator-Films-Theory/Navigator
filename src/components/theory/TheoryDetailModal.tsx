@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { fetchTheoryCitations } from '../../lib/queries/theories';
 import type { Theory } from '../../types/theory';
 import styles from './TheoryDetailModal.module.scss';
@@ -18,6 +19,7 @@ type TheoryDetailModalProps = {
 };
 
 export default function TheoryDetailModal({ item, onClose }: TheoryDetailModalProps) {
+  const navigate = useNavigate();
   const filmItems = item.representative_films ?? [];
 
   const { data: linkedCitations = [] } = useQuery({
@@ -180,10 +182,18 @@ export default function TheoryDetailModal({ item, onClose }: TheoryDetailModalPr
 
         {/* FOOTER */}
         <footer className={styles.footer}>
-          <button className={styles.buttonPrimary}>
+          <button
+            type="button"
+            className={styles.buttonPrimary}
+            onClick={() => navigate(`/quiz/${item.slug}`)}
+          >
             Test Your Knowledge
           </button>
-          <button className={styles.buttonSecondary}>
+          <button
+            type="button"
+            className={styles.buttonSecondary}
+            onClick={() => navigate('/analysis')}
+          >
             Analyze a Film
           </button>
         </footer>
