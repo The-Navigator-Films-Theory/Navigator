@@ -34,15 +34,17 @@ export default function AdminRoute({ children }: AdminRouteProps) {
     let active = true;
 
     const verify = async () => {
-      const { data, error } = await supabase.auth.getSession();
+      // Check for admin session in sessionStorage
+      const adminUserId = sessionStorage.getItem('admin_user_id');
 
       if (!active) return;
-      if (error || !data.session?.user) {
+      if (!adminUserId) {
         setAccessState('unauthenticated');
         return;
       }
 
-      const isAdmin = await hasAdminAccess(data.session.user.id);
+      // Verify the admin user still exists in admin_users table
+      const isAdmin = await hasAdminAccess(adminUserId);
       if (!active) return;
 
       setAccessState(isAdmin ? 'authorized' : 'unauthorized');

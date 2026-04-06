@@ -1,12 +1,12 @@
+import { Check, Edit2, Plus, Trash2, X } from 'lucide-react';
 import { useState } from 'react';
-import { Plus, Edit2, Trash2, Check, X } from 'lucide-react';
+import ConfirmDeleteModal from '../components/admin/ConfirmDeleteModal';
 import DataTable, { type Column } from '../components/admin/DataTable';
 import StatusBadge from '../components/admin/StatusBadge';
-import VocabularyFormModal from '../components/admin/VocabularyFormModal';
-import ConfirmDeleteModal from '../components/admin/ConfirmDeleteModal';
-import { useVocabularyTerms, useVocabularyManagement } from '../lib/queries/vocabulary.management';
-import type { VocabularyTerm } from '../lib/queries/vocabulary';
 import type { VocabularyFormData } from '../components/admin/VocabularyForm';
+import VocabularyFormModal from '../components/admin/VocabularyFormModal';
+import type { VocabularyTerm } from '../lib/queries/vocabulary';
+import { useVocabularyManagement, useVocabularyTerms } from '../lib/queries/vocabulary.management';
 import styles from './AdminVocabulary.module.scss';
 
 export default function AdminVocabulary() {

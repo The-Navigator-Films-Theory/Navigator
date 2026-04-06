@@ -78,12 +78,17 @@ export function useTheoryManagement() {
 
   const publishTheoryMutation = useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('theories')
         .update({ status: 'published', published_at: new Date().toISOString() })
-        .eq('id', id);
+        .eq('id', id)
+        .select('id')
+        .maybeSingle();
 
       if (error) throw error;
+      if (!data) {
+        throw new Error('No theory was updated. Check RLS policies for theories update access.');
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['theories'] });
@@ -97,9 +102,17 @@ export function useTheoryManagement() {
 
   const unpublishTheoryMutation = useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase.from('theories').update({ status: 'draft' }).eq('id', id);
+      const { data, error } = await supabase
+        .from('theories')
+        .update({ status: 'draft', published_at: null })
+        .eq('id', id)
+        .select('id')
+        .maybeSingle();
 
       if (error) throw error;
+      if (!data) {
+        throw new Error('No theory was updated. Check RLS policies for theories update access.');
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['theories'] });

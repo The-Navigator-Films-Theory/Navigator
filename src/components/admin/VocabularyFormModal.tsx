@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
-import VocabularyForm from './VocabularyForm';
+import { useEffect, useState } from 'react';
 import type { VocabularyTerm } from '../../lib/queries/vocabulary';
 import type { VocabularyFormData } from '../../lib/queries/vocabulary.management';
+import VocabularyForm from './VocabularyForm';
 import styles from './VocabularyFormModal.module.scss';
 
 type VocabularyFormModalProps = {

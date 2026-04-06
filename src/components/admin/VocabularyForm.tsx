@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import type { VocabularyTerm } from '../../lib/queries/vocabulary';
+import type { VocabularyFormData } from '../../lib/queries/vocabulary.management';
 import Button from '../ui/Button';
 import Input from '../ui/Input';
 import styles from './VocabularyForm.module.scss';
-import type { VocabularyTerm } from '../../lib/queries/vocabulary';
-import type { VocabularyFormData } from '../../lib/queries/vocabulary.management';
 
 type VocabularyFormProps = {
   initialData?: VocabularyTerm | null;

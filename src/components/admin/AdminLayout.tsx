@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { LogOut, Menu, X, BarChart3, BookOpen, FileText, HelpCircle } from 'lucide-react';
-import { supabase } from '../../lib/supabase/client';
 import styles from './AdminLayout.module.scss';
 
 type AdminLayoutProps = {
@@ -11,21 +10,10 @@ type AdminLayoutProps = {
 export default function AdminLayout({ children }: AdminLayoutProps) {
   const navigate = useNavigate();
   const location = useLocation();
-  const [phoneNumber, setPhoneNumber] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  useEffect(() => {
-    const getAdminInfo = async () => {
-      const { data } = await supabase.auth.getSession();
-      if (data.session?.user?.phone) {
-        setPhoneNumber(data.session.user.phone);
-      }
-    };
-    void getAdminInfo();
-  }, []);
-
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
+  const handleLogout = () => {
+    sessionStorage.removeItem('admin_user_id');
     navigate('/admin/login', { replace: true });
   };
 
@@ -66,14 +54,12 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         </ul>
 
         <div className={styles.sidebarFooter}>
-          {phoneNumber && (
-            <div className={styles.userInfo}>
-              <div className={styles.userMeta}>
-                <p className={styles.userName}>Admin</p>
-                <p className={styles.userPhone}>{phoneNumber}</p>
-              </div>
+          <div className={styles.userInfo}>
+            <div className={styles.userMeta}>
+              <p className={styles.userName}>Admin</p>
+              <p className={styles.userPhone}>Logged in</p>
             </div>
-          )}
+          </div>
           <button className={styles.logoutButton} onClick={handleLogout}>
             <LogOut size={16} style={{ display: 'inline', marginRight: '0.5rem' }} />
             Sign Out
