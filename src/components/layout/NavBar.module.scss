@@ -1,7 +1,7 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 30;
   border-bottom: 1px solid rgba(var(--border), 0.9);
   background: linear-gradient(180deg, #121a24 0%, #0f1722 100%);
   backdrop-filter: blur(8px);
@@ -75,6 +75,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: 0.75rem;
 }
 
 .loginButton {
@@ -99,6 +100,143 @@
   box-shadow: 0 14px 28px rgba(37, 99, 235, 0.26);
 }
 
+.menuButton {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.04);
+  color: #f8fafc;
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.menuButton:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateY(-1px);
+}
+
+.mobileOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 25;
+  background: rgba(2, 6, 23, 0.58);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.mobileOverlayVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 88px;
+  left: 0;
+  right: 0;
+  z-index: 26;
+  transform: translateY(-12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 180ms ease, opacity 180ms ease;
+  padding: 0 1rem 1rem;
+}
+
+.mobileMenuOpen {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobileMenuInner {
+  margin: 0 auto;
+  width: min(100%, 42rem);
+  border: 1px solid rgba(var(--border), 0.9);
+  border-radius: 1.15rem;
+  background: linear-gradient(180deg, rgba(18, 26, 36, 0.98), rgba(15, 23, 34, 0.98));
+  box-shadow:
+    0 18px 42px rgba(2, 6, 23, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  padding: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+.mobileMenuHeader {
+  padding: 0.35rem 0.25rem 0.85rem;
+}
+
+.mobileMenuTitle {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.58);
+  text-transform: uppercase;
+}
+
+.mobileNav {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.mobileLink {
+  display: flex;
+  align-items: center;
+  border-radius: 0.9rem;
+  padding: 0.95rem 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.mobileLink:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.mobileLinkActive {
+  background: rgba(var(--primary), 0.14);
+  color: rgb(var(--primary));
+}
+
+.mobileActions {
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mobileLoginButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  border: 1px solid rgb(var(--primary));
+  border-radius: 0.9rem;
+  background: rgb(var(--primary));
+  color: #ffffff;
+  text-decoration: none;
+  padding: 0.9rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.2);
+  transition: background-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.mobileLoginButton:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(37, 99, 235, 0.26);
+}
+
 @media (max-width: 1100px) {
   .inner {
     width: min(100%, 72rem);
@@ -115,22 +253,67 @@
 
 @media (max-width: 960px) {
   .inner {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    gap: 0.8rem;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
     padding: 1rem 1.25rem;
+    min-height: 84px;
   }
 
   .brandWrap {
-    justify-items: center;
-    text-align: center;
+    justify-items: start;
+    text-align: left;
   }
 
   .nav {
-    flex-wrap: wrap;
+    display: none;
+  }
+
+  .loginButton {
+    display: none;
+  }
+
+  .menuButton {
+    display: inline-flex;
   }
 
   .actions {
-    justify-content: center;
+    justify-content: flex-end;
+  }
+
+  .mobileMenu {
+    top: 84px;
+  }
+}
+
+@media (max-width: 640px) {
+  .inner {
+    padding: 0.9rem 1rem;
+  }
+
+  .brand {
+    max-width: 220px;
+    font-size: 0.95rem;
+  }
+
+  .tagline {
+    font-size: 0.76rem;
+  }
+
+  .menuButton {
+    width: 42px;
+    height: 42px;
+  }
+
+  .mobileMenu {
+    padding: 0 0.75rem 0.9rem;
+  }
+
+  .mobileMenuInner {
+    padding: 0.9rem;
+  }
+
+  .mobileLink {
+    padding: 0.9rem 0.95rem;
+    font-size: 0.96rem;
   }
 }
