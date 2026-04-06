@@ -6,3 +6,6 @@ export type { Column } from './DataTable';
 export { default as TheoryForm } from './TheoryForm';
 export type { TheoryFormData } from './TheoryForm';
 export { default as TheoryFormModal } from './TheoryFormModal';
+export { default as VocabularyForm } from './VocabularyForm';
+export type { VocabularyFormData } from './VocabularyForm';
+export { default as VocabularyFormModal } from './VocabularyFormModal';

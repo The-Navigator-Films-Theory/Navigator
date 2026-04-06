@@ -3,7 +3,15 @@
 }
 
 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
   margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 
 .title {
@@ -16,6 +24,11 @@
 .subtitle {
   margin: 0;
   color: var(--color-text-secondary);
+}
+
+.cellPrimary {
+  font-weight: 600;
+  color: var(--color-text-primary);
 }
 
 .content {
@@ -33,3 +46,4 @@
   color: rgba(139, 148, 158, 0.5);
   margin: 0 auto 1rem;
 }
+
