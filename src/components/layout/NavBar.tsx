@@ -1,6 +1,7 @@
 import { Menu, User, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { EXTERNAL_LINKS, hasExternalLink } from '../../config/externalLinks';
 import styles from './NavBar.module.scss';
 
 const links = [
@@ -46,6 +47,28 @@ export default function NavBar() {
         </nav>
 
         <div className={styles.actions}>
+          {hasExternalLink(EXTERNAL_LINKS.betaFeedbackFormUrl) && (
+            <a
+              href={EXTERNAL_LINKS.betaFeedbackFormUrl}
+              target="_blank"
+              rel="noreferrer"
+              className={styles.feedbackLink}
+            >
+              Feedback
+            </a>
+          )}
+
+          {hasExternalLink(EXTERNAL_LINKS.betaQaFormUrl) && (
+            <a
+              href={EXTERNAL_LINKS.betaQaFormUrl}
+              target="_blank"
+              rel="noreferrer"
+              className={styles.feedbackLink}
+            >
+              Q&A
+            </a>
+          )}
+
           <NavLink to="/admin/login" className={styles.loginButton}>
             <User size={16} />
             <span>Login</span>
@@ -98,6 +121,30 @@ export default function NavBar() {
           </nav>
 
           <div className={styles.mobileActions}>
+            {hasExternalLink(EXTERNAL_LINKS.betaFeedbackFormUrl) && (
+              <a
+                href={EXTERNAL_LINKS.betaFeedbackFormUrl}
+                target="_blank"
+                rel="noreferrer"
+                className={styles.mobileFeedbackLink}
+                onClick={closeMenu}
+              >
+                Beta Feedback
+              </a>
+            )}
+
+            {hasExternalLink(EXTERNAL_LINKS.betaQaFormUrl) && (
+              <a
+                href={EXTERNAL_LINKS.betaQaFormUrl}
+                target="_blank"
+                rel="noreferrer"
+                className={styles.mobileFeedbackLink}
+                onClick={closeMenu}
+              >
+                Beta Q&A
+              </a>
+            )}
+
             <NavLink to="/admin/login" className={styles.mobileLoginButton} onClick={closeMenu}>
               <User size={16} />
               <span>Login</span>

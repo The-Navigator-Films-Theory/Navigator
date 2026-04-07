@@ -1,5 +1,6 @@
 import { Mail, Users, X } from 'lucide-react'; // Using Users for the unidentified icon
 import { Link } from 'react-router-dom';
+import { EXTERNAL_LINKS, hasExternalLink } from '../../config/externalLinks';
 import styles from './Footer.module.scss';
 
 const learningLinks = [
@@ -12,6 +13,18 @@ const learningLinks = [
 ];
 
 const communityLinks = [
+  {
+    to: EXTERNAL_LINKS.betaFeedbackFormUrl,
+    label: 'Beta Feedback Form',
+    external: true,
+    disabled: !hasExternalLink(EXTERNAL_LINKS.betaFeedbackFormUrl),
+  },
+  {
+    to: EXTERNAL_LINKS.betaQaFormUrl,
+    label: 'Beta Q&A Form',
+    external: true,
+    disabled: !hasExternalLink(EXTERNAL_LINKS.betaQaFormUrl),
+  },
   { to: '/community/forums', label: 'Discussion Forums', disabled: true },
   { to: '/community/groups', label: 'Study Groups', disabled: true },
   { to: '/community/experts', label: 'Expert Insights', disabled: true },
@@ -58,7 +71,15 @@ export default function Footer() {
               <ul>
                 {communityLinks.map((link) => (
                   <li key={link.to}>
-                    <span className={styles.disabledLink}>{link.label}</span>
+                    {link.disabled ? (
+                      <span className={styles.disabledLink}>{link.label}</span>
+                    ) : link.external ? (
+                      <a href={link.to} target="_blank" rel="noreferrer">
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link to={link.to}>{link.label}</Link>
+                    )}
                   </li>
                 ))}
               </ul>
