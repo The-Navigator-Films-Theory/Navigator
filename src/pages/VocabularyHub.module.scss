@@ -234,20 +234,12 @@ $transition-base: 0.18s ease;
 }
 
 .featuredList {
-  display: flex;
-  gap: 14px;
-  overflow-x: auto;
-  padding-bottom: 6px;
-  scrollbar-width: none;
-}
-
-.featuredList::-webkit-scrollbar {
-  display: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
 }
 
 .featuredCard {
-  min-width: 220px;
-  flex-shrink: 0;
   min-height: 150px;
   padding: 18px 20px;
   border-radius: $radius-xl;
@@ -297,7 +289,8 @@ $transition-base: 0.18s ease;
 
 .controls {
   display: grid;
-  gap: 12px;
+  grid-template-columns: 1fr 220px;
+  gap: 16px;
   align-items: center;
   padding: 18px;
   border-radius: 1rem;
@@ -341,7 +334,8 @@ $transition-base: 0.18s ease;
 
 .list {
   display: grid;
-  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
 }
 
 .card {
@@ -760,19 +754,14 @@ $transition-base: 0.18s ease;
   }
 }
 
-@media (min-width: 640px) {
-  .controls {
-    grid-template-columns: 1fr 220px;
-  }
-
-  .list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 1024px) {
   .topGrid {
     grid-template-columns: 1fr;
+  }
+
+  .featuredList,
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .heroTitle {
@@ -780,65 +769,10 @@ $transition-base: 0.18s ease;
   }
 }
 
-@media (min-width: 1024px) {
-  .list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 640px) {
-  .hero {
-    gap: 0.5rem;
-  }
-
-  .heroTitle {
-    font-size: 2rem;
-  }
-
-  .heroText {
-    font-size: 0.95rem;
-  }
-
-  .heroMeta {
-    font-size: 0.85rem;
-  }
-
-  .termOfDay {
-    padding: 18px;
-  }
-
-  .termOfDayTitle {
-    font-size: 1.5rem;
-  }
-
-  .termOfDayText {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-
-  .featuredCard {
-    min-width: 220px;
-  }
-
-  .card {
-    min-height: auto;
-    padding: 18px;
-    border-radius: 14px;
-  }
-
-  .term {
-    font-size: 1.1rem;
-  }
-
-  .definition {
-    font-size: 0.9rem;
-  }
-
-  .modal,
-  .modalTheoryGrid {
-    width: 100%;
-  }
-
+  .featuredList,
+  .list,
+  .controls,
   .modalTheoryGrid {
     grid-template-columns: 1fr;
   }
@@ -847,7 +781,16 @@ $transition-base: 0.18s ease;
     width: 100%;
   }
 
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroText {
+    font-size: 0.98rem;
+  }
+
   .modal {
+    width: 100%;
     max-height: 92vh;
   }
 
