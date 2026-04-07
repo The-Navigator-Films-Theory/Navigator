@@ -51,6 +51,36 @@ export type Database = {
         }
         Relationships: []
       }
+      user_engagement: {
+        Row: {
+          id: string
+          user_id: string | null
+          event_type: string
+          related_id: string | null
+          related_type: string | null
+          metadata: Json | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          user_id?: string | null
+          event_type: string
+          related_id?: string | null
+          related_type?: string | null
+          metadata?: Json | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string | null
+          event_type?: string
+          related_id?: string | null
+          related_type?: string | null
+          metadata?: Json | null
+          created_at?: string
+        }
+        Relationships: []
+      }
       analysis_templates: {
         Row: {
           created_at: string

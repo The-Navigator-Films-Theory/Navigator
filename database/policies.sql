@@ -454,3 +454,33 @@ using (
       and (qa.user_id = auth.uid() or qa.user_id is null)
   )
 );
+
+-- ------------------------------------------------------------
+-- user_engagement
+-- ------------------------------------------------------------
+drop policy if exists "anyone can insert user_engagement" on public.user_engagement;
+create policy "anyone can insert user_engagement"
+on public.user_engagement
+for insert
+to public
+with check (true);
+
+drop policy if exists "users can read their own engagement" on public.user_engagement;
+create policy "users can read their own engagement"
+on public.user_engagement
+for select
+to public
+using (user_id = auth.uid() or auth.uid() = '00000000-0000-0000-0000-000000000000');
+
+drop policy if exists "admins can read all engagement" on public.user_engagement;
+create policy "admins can read all engagement"
+on public.user_engagement
+for select
+to public
+using (
+  exists (
+    select 1
+    from public.admin_users au
+    where au.user_id = auth.uid()
+  )
+);

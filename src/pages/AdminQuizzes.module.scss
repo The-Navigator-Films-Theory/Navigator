@@ -1,0 +1,35 @@
+.page {
+  width: 100%;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.title {
+  margin: 0 0 0.5rem;
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+.content {
+  background: rgba(22, 27, 34, 0.6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: 2rem;
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  color: rgba(139, 148, 158, 0.5);
+  margin: 0 auto 1rem;
+}

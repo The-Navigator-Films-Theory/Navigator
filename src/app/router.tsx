@@ -1,8 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { AdminRoute } from '../components/common';
 import { AppLayout } from '../components/layout';
 import AcademicLicense from '../pages/AcademicLicense';
 import AdminDashboard from '../pages/AdminDashboard';
 import AdminLogin from '../pages/AdminLogin';
+import AdminTheories from '../pages/AdminTheories';
+import AdminVocabulary from '../pages/AdminVocabulary';
+import AdminQuizzes from '../pages/AdminQuizzes';
+import AdminAnalytics from '../pages/AdminAnalytics';
 import AnalysisToolkit from '../pages/AnalysisToolkit';
 import AnalysisWorkspace from '../pages/AnalysisWorkspace';
 import FlashcardsPage from '../pages/FlashcardsPage';
@@ -32,7 +37,51 @@ export const router = createBrowserRouter([
       { path: '/terms', element: <TermsOfService /> },
       { path: '/license', element: <AcademicLicense /> },
       { path: '/admin/login', element: <AdminLogin /> },
-      { path: '/admin', element: <AdminDashboard /> },
+    ],
+  },
+  {
+    path: '/admin',
+    children: [
+      {
+        path: '',
+        element: (
+          <AdminRoute>
+            <AdminDashboard />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: 'theories',
+        element: (
+          <AdminRoute>
+            <AdminTheories />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: 'vocabulary',
+        element: (
+          <AdminRoute>
+            <AdminVocabulary />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: 'quizzes',
+        element: (
+          <AdminRoute>
+            <AdminQuizzes />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: 'analytics',
+        element: (
+          <AdminRoute>
+            <AdminAnalytics />
+          </AdminRoute>
+        ),
+      },
     ],
   },
 ]);
