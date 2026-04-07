@@ -1,6 +1,6 @@
 export const EXTERNAL_LINKS = {
-  betaFeedbackFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdiwmeiyL5dfhuabC2jijpEz_E0YDys-SZUSdjThrG2zkX9SA/viewform?usp=publish-editor'
-//   betaQaFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdiwmeiyL5dfhuabC2jijpEz_E0YDys-SZUSdjThrG2zkX9SA/viewform?usp=publish-editor',
+  betaFeedbackFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSevHjWyq6pLK4NSxz68b-AxDMqS9t8q1QiPWipgn8n1N8eV6w/viewform?usp=publish-editor'
+//   betaQaFormUrl: '',
 // 
 }
 ;
