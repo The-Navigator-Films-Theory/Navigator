@@ -3,7 +3,7 @@ import { Award, BrainCircuit, Gamepad2, RefreshCw, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ErrorState, Loading } from '../components/common';
 import Button from '../components/ui/Button';
-import { fetchLearningHubStats } from '../lib/queries/quiz';
+import { fetchLearningHubStats, fetchLearningProgressStats } from '../lib/queries/quiz';
 import styles from './InteractiveLearning.module.scss';
 
 export default function InteractiveLearning() {
@@ -12,9 +12,22 @@ export default function InteractiveLearning() {
     queryFn: () => fetchLearningHubStats(),
   });
 
+  const {
+    data: progress,
+    isLoading: progressLoading,
+    error: progressError,
+  } = useQuery({
+    queryKey: ['learning-progress-stats'],
+    queryFn: () => fetchLearningProgressStats(),
+    staleTime: 15_000,
+    refetchInterval: 30_000,
+  });
+
   if (isLoading) return <Loading label="Loading learning hub..." />;
   if (error) return <ErrorState message="Could not load learning hub data." />;
+  if (progressError) return <ErrorState message="Could not load learning progress." />;
   if (!data) return <ErrorState message="Learning hub data is unavailable." />;
+  if (!progress || progressLoading) return <Loading label="Loading learning progress..." />;
 
   return (
     <section className={styles.page}>
@@ -98,8 +111,10 @@ export default function InteractiveLearning() {
               <Award size={22} />
             </div>
             <h3 className={styles.progressCardTitle}>Quiz Best Score</h3>
-            <p className={styles.progressCardValue}>--</p>
-            <p className={styles.progressCardSub}>Complete a quiz to see your score</p>
+            <p className={styles.progressCardValue}>{progress.quizBestScore ?? '--'}</p>
+            <p className={styles.progressCardSub}>
+              {progress.quizBestScore ? 'Best completed quiz result' : 'Complete a quiz to see your score'}
+            </p>
           </article>
 
           <article className={styles.progressCard}>
@@ -107,8 +122,10 @@ export default function InteractiveLearning() {
               <BrainCircuit size={22} />
             </div>
             <h3 className={styles.progressCardTitle}>Cards Studied</h3>
-            <p className={styles.progressCardValue}>--</p>
-            <p className={styles.progressCardSub}>Start studying to track progress</p>
+            <p className={styles.progressCardValue}>{progress.cardsStudied}</p>
+            <p className={styles.progressCardSub}>
+              {progress.cardsStudied > 0 ? 'Unique flashcards viewed' : 'Start studying to track progress'}
+            </p>
           </article>
 
           <article className={styles.progressCard}>
@@ -116,7 +133,7 @@ export default function InteractiveLearning() {
               <Gamepad2 size={22} />
             </div>
             <h3 className={styles.progressCardTitle}>Games Played</h3>
-            <p className={styles.progressCardValue}>0</p>
+            <p className={styles.progressCardValue}>{progress.gamesPlayed}</p>
             <p className={styles.progressCardSub}>Play games to track progress</p>
           </article>
 
@@ -125,8 +142,8 @@ export default function InteractiveLearning() {
               <Target size={22} />
             </div>
             <h3 className={styles.progressCardTitle}>Theories Mastered</h3>
-            <p className={styles.progressCardValue}>--</p>
-            <p className={styles.progressCardSub}>Based on quiz performance</p>
+            <p className={styles.progressCardValue}>{progress.theoriesMastered}</p>
+            <p className={styles.progressCardSub}>Based on quiz performance (70%+)</p>
           </article>
         </div>
       </section>

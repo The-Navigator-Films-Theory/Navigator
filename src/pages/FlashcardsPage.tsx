@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { ChevronLeft, RefreshCw } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ErrorState from '../components/common/ErrorState';
 import Loading from '../components/common/Loading';
 import Button from '../components/ui/Button';
+import { trackEngagementEvent } from '../lib/engagement';
 import { fetchFlashcards } from '../lib/queries/flashcards';
 import styles from './FlashcardsPage.module.scss';
 
@@ -20,6 +21,19 @@ export default function FlashcardsPage() {
 
   const totalCards = cards.length;
   const currentCard = cards[currentIndex];
+
+  useEffect(() => {
+    if (!currentCard?.id) return;
+
+    void trackEngagementEvent({
+      eventType: 'studied_flashcard',
+      relatedType: 'flashcard',
+      relatedId: currentCard.id,
+      metadata: {
+        theory: currentCard.theoryLabel,
+      },
+    });
+  }, [currentCard?.id, currentCard?.theoryLabel]);
 
   const handlePrevious = () => {
     if (totalCards === 0) return;
@@ -65,10 +79,23 @@ export default function FlashcardsPage() {
         <article className={styles.cardShell}>
           <div className={styles.theoryPill}>{currentCard.theoryLabel}</div>
 
-          <button type="button" className={styles.cardFace} onClick={handleFlip}>
-            <h2 className={styles.faceLabel}>{isFlipped ? 'Definition' : 'Term'}</h2>
-            <p className={styles.faceValue}>{isFlipped ? currentCard.definition : currentCard.term}</p>
-            {!isFlipped && <p className={styles.faceHint}>Click to reveal definition</p>}
+          <button
+            type="button"
+            className={`${styles.cardFace} ${isFlipped ? styles.flipped : ''}`}
+            onClick={handleFlip}
+          >
+            <div className={styles.flipInner}>
+              <div className={`${styles.facePanel} ${styles.faceFront}`}>
+                <h2 className={styles.faceLabel}>Term</h2>
+                <p className={styles.faceValue}>{currentCard.term}</p>
+                <p className={styles.faceHint}>Click to reveal definition</p>
+              </div>
+
+              <div className={`${styles.facePanel} ${styles.faceBack}`}>
+                <h2 className={styles.faceLabel}>Definition</h2>
+                <p className={styles.faceValue}>{currentCard.definition}</p>
+              </div>
+            </div>
           </button>
 
           <div className={styles.controlsRow}>
@@ -81,7 +108,7 @@ export default function FlashcardsPage() {
                 Flip Card
               </span>
             </Button>
-            <Button onClick={handleNext}>Next</Button>
+            <Button onClick={handleNext} className={styles.nextButton}>Next</Button>
           </div>
         </article>
       </div>

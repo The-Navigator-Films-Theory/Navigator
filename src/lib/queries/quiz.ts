@@ -1,4 +1,5 @@
 import type { QuizQuestion } from '../../types';
+import { getOrCreateAnonymousUserId } from '../engagement';
 import { supabase } from '../supabase/client';
 
 type FetchQuizQuestionsParams = {
@@ -221,5 +222,92 @@ export async function fetchLearningHubStats(): Promise<{
     ...quizStats,
     flashcardCount: flashcardCount ?? 0,
     gameCount,
+  };
+}
+
+export type LearningProgressStats = {
+  quizBestScore: string | null;
+  cardsStudied: number;
+  gamesPlayed: number;
+  theoriesMastered: number;
+};
+
+type EngagementRow = {
+  event_type: string;
+  related_id: string | null;
+  metadata: Record<string, unknown> | null;
+};
+
+function getNumber(value: unknown): number | null {
+  if (typeof value === 'number' && Number.isFinite(value)) return value;
+  if (typeof value === 'string' && value.trim() !== '') {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : null;
+  }
+  return null;
+}
+
+export async function fetchLearningProgressStats(): Promise<LearningProgressStats> {
+  const anonUserId = getOrCreateAnonymousUserId();
+
+  if (!anonUserId) {
+    return {
+      quizBestScore: null,
+      cardsStudied: 0,
+      gamesPlayed: 0,
+      theoriesMastered: 0,
+    };
+  }
+
+  const { data, error } = await supabase
+    .from('user_engagement')
+    .select('event_type, related_id, metadata')
+    .contains('metadata', { anon_user_id: anonUserId });
+
+  if (error) {
+    throw error;
+  }
+
+  const rows = (data || []) as EngagementRow[];
+
+  const completedQuizEvents = rows.filter((row) => row.event_type === 'completed_quiz');
+  const studiedCards = rows.filter((row) => row.event_type === 'studied_flashcard');
+  const playedGames = rows.filter((row) => row.event_type === 'played_game');
+
+  let bestScoreText: string | null = null;
+  let bestPercent = -1;
+  const masteredTheoryIds = new Set<string>();
+
+  completedQuizEvents.forEach((event) => {
+    const meta = event.metadata ?? {};
+    const score = getNumber(meta.score);
+    const total = getNumber(meta.totalQuestions ?? meta.total_questions);
+    let percent = getNumber(meta.percent);
+
+    if (percent === null && score !== null && total && total > 0) {
+      percent = Math.round((score / total) * 100);
+    }
+
+    if (percent !== null && percent > bestPercent && score !== null && total !== null) {
+      bestPercent = percent;
+      bestScoreText = `${score}/${total} (${percent}%)`;
+    }
+
+    if (percent !== null && percent >= 70 && event.related_id) {
+      masteredTheoryIds.add(event.related_id);
+    }
+  });
+
+  const uniqueStudiedCards = new Set(
+    studiedCards
+      .map((row) => row.related_id)
+      .filter((value): value is string => Boolean(value)),
+  );
+
+  return {
+    quizBestScore: bestScoreText,
+    cardsStudied: uniqueStudiedCards.size,
+    gamesPlayed: playedGames.length,
+    theoriesMastered: masteredTheoryIds.size,
   };
 }

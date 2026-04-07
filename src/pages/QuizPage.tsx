@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { ChevronLeft } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ErrorState from '../components/common/ErrorState';
 import Loading from '../components/common/Loading';
 import QuizQuestion from '../components/quiz/QuizQuestion';
 import { useQuiz } from '../hooks/quiz/useQuiz';
+import { trackEngagementEvent } from '../lib/engagement';
 import { fetchQuizQuestions } from '../lib/queries/quiz';
 import type { QuizQuestion as QuizQuestionType } from '../types';
 import styles from './QuizPage.module.scss';
@@ -48,6 +49,26 @@ function QuizRunner({ theoryId, questions, onTryAgain }: QuizRunnerProps) {
     handleNextQuestion,
     handleSelectAnswer,
   } = useQuiz(theoryId, questions);
+  const hasTrackedCompletion = useRef(false);
+
+  useEffect(() => {
+    if (!isFinished || hasTrackedCompletion.current) return;
+
+    hasTrackedCompletion.current = true;
+
+    const percent = totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0;
+
+    void trackEngagementEvent({
+      eventType: 'completed_quiz',
+      relatedType: 'theory',
+      relatedId: theoryId,
+      metadata: {
+        score,
+        totalQuestions,
+        percent,
+      },
+    });
+  }, [isFinished, score, totalQuestions, theoryId]);
 
   if (isFinished) {
     return (
