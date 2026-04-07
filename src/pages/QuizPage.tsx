@@ -75,8 +75,13 @@ function QuizRunner({ theoryId, questions, onTryAgain }: QuizRunnerProps) {
           <ChevronLeft size={20} />
           Back to Hub
         </Link>
-        <div className={styles.progress}>
-          Question {currentQuestionIndex + 1} of {totalQuestions}
+        <div className={styles.quizMeta}>
+          <div className={styles.progress}>
+            Question {currentQuestionIndex + 1} of {totalQuestions}
+          </div>
+          <div className={styles.scoreBadge}>
+            Score: {score}
+          </div>
         </div>
       </div>
 
@@ -85,6 +90,8 @@ function QuizRunner({ theoryId, questions, onTryAgain }: QuizRunnerProps) {
           question={currentQuestion}
           selectedAnswer={selectedAnswer}
           isCorrect={isCorrect}
+          currentQuestionIndex={currentQuestionIndex}
+          totalQuestions={totalQuestions}
           onSelectAnswer={handleSelectAnswer}
           onNext={handleNextQuestion}
         />

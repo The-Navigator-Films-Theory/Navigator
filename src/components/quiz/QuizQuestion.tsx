@@ -8,6 +8,8 @@ interface QuizQuestionProps {
   question: IQuizQuestion;
   selectedAnswer: string | null;
   isCorrect: boolean;
+  currentQuestionIndex: number;
+  totalQuestions: number;
   onSelectAnswer: (answerId: string) => void;
   onNext: () => void;
 }
@@ -15,10 +17,13 @@ interface QuizQuestionProps {
 const QuizQuestion: React.FC<QuizQuestionProps> = ({
   question,
   selectedAnswer,
+  currentQuestionIndex,
+  totalQuestions,
   onSelectAnswer,
   onNext,
 }) => {
   const isAnswered = selectedAnswer !== null;
+  const progressPercent = totalQuestions > 0 ? ((currentQuestionIndex + 1) / totalQuestions) * 100 : 0;
 
   const getOptionClass = (optionId: string) => {
     if (!isAnswered) {
@@ -38,6 +43,12 @@ const QuizQuestion: React.FC<QuizQuestionProps> = ({
 
   return (
     <div className={styles.quizQuestion}>
+      <p className={styles.questionCounter}>
+        Question {currentQuestionIndex + 1} of {totalQuestions}
+      </p>
+      <div className={styles.progressTrack} aria-label="Quiz progress" role="progressbar" aria-valuemin={1} aria-valuemax={totalQuestions} aria-valuenow={currentQuestionIndex + 1}>
+        <div className={styles.progressFill} style={{ width: `${progressPercent}%` }} />
+      </div>
       <h2 className={styles.questionText}>{question.question}</h2>
       <div className={styles.optionsGrid}>
         {question.options.map((option: QuizQuestionOption, index: number) => (
