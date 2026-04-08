@@ -1,3 +1,7 @@
+// Project Attribution
+// Owner: Gail McFarland
+// Contributors: Jay Choksi, Dhairya Patel, Rishyu Babariya
+
 import type { Database } from '../../types/database.types';
 import type { Theory, TheoryCitation, TheoryFilm } from '../../types/theory';
 import { supabase } from '../supabase/client';

@@ -1,3 +1,7 @@
+// Project Attribution
+// Owner: Gail McFarland
+// Contributors: Jay Choksi, Dhairya Patel, Rishyu Babariya
+
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from '../../types/database.types';
 

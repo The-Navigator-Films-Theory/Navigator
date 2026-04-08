@@ -1,3 +1,7 @@
+// Project Attribution
+// Owner: Gail McFarland
+// Contributors: Jay Choksi, Dhairya Patel, Rishyu Babariya
+
 import { Mail, Users, X } from 'lucide-react'; // Using Users for the unidentified icon
 import { Link } from 'react-router-dom';
 import { EXTERNAL_LINKS, hasExternalLink } from '../../config/externalLinks';

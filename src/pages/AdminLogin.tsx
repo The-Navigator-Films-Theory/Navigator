@@ -1,3 +1,7 @@
+// Project Attribution
+// Owner: Gail McFarland
+// Contributors: Jay Choksi, Dhairya Patel, Rishyu Babariya
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/ui/Button';

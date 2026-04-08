@@ -1,3 +1,7 @@
+// Project Attribution
+// Owner: Gail McFarland
+// Contributors: Jay Choksi, Dhairya Patel, Rishyu Babariya
+
 import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { trackEngagementEvent } from '../../lib/engagement';

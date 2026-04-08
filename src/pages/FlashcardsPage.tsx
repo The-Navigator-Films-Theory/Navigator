@@ -1,3 +1,7 @@
+// Project Attribution
+// Owner: Gail McFarland
+// Contributors: Jay Choksi, Dhairya Patel, Rishyu Babariya
+
 import { useQuery } from '@tanstack/react-query';
 import { ChevronLeft, RefreshCw } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';

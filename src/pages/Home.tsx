@@ -1,3 +1,7 @@
+// Project Attribution
+// Owner: Gail McFarland
+// Contributors: Jay Choksi, Dhairya Patel, Rishyu Babariya
+
 import { Link } from 'react-router-dom';
 import StatsGrid from '../components/home/StatsGrid';
 import styles from './Home.module.scss';

@@ -1,3 +1,7 @@
+// Project Attribution
+// Owner: Gail McFarland
+// Contributors: Jay Choksi, Dhairya Patel, Rishyu Babariya
+
 import { useState } from 'react';
 import { Plus, Edit2, Trash2, Check, X } from 'lucide-react';
 import DataTable, { type Column } from '../components/admin/DataTable';

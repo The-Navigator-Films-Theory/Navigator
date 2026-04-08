@@ -1,3 +1,7 @@
+// Project Attribution
+// Owner: Gail McFarland
+// Contributors: Jay Choksi, Dhairya Patel, Rishyu Babariya
+
 import { Plus } from 'lucide-react';
 import styles from './AdminQuizzes.module.scss';
 

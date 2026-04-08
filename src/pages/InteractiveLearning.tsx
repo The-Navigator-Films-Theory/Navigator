@@ -1,3 +1,7 @@
+// Project Attribution
+// Owner: Gail McFarland
+// Contributors: Jay Choksi, Dhairya Patel, Rishyu Babariya
+
 import { useQuery } from '@tanstack/react-query';
 import { Award, BrainCircuit, Gamepad2, RefreshCw, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';

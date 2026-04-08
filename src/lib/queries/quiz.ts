@@ -1,3 +1,7 @@
+// Project Attribution
+// Owner: Gail McFarland
+// Contributors: Jay Choksi, Dhairya Patel, Rishyu Babariya
+
 import type { QuizQuestion } from '../../types';
 import { getOrCreateAnonymousUserId } from '../engagement';
 import { supabase } from '../supabase/client';

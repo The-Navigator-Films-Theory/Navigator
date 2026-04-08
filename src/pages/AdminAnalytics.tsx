@@ -1,3 +1,7 @@
+// Project Attribution
+// Owner: Gail McFarland
+// Contributors: Jay Choksi, Dhairya Patel, Rishyu Babariya
+
 import { Users, BarChart3, Eye, CheckCircle2 } from 'lucide-react';
 import StatsCard from '../components/admin/StatsCard';
 import ActivityTimeline from '../components/admin/ActivityTimeline';

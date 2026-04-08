@@ -1,3 +1,7 @@
+// Project Attribution
+// Owner: Gail McFarland
+// Contributors: Jay Choksi, Dhairya Patel, Rishyu Babariya
+
 import { Check, Edit2, Plus, Trash2, X } from 'lucide-react';
 import { useState } from 'react';
 import ConfirmDeleteModal from '../components/admin/ConfirmDeleteModal';
